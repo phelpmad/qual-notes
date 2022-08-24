@@ -2,3 +2,8 @@
 *.html
 *.DS_Store
 *.log
+*.out
+*.gz
+*.aux
+*.synctex
+*.toc
