@@ -1,3 +1,4 @@
 *.md.bak
 *.html
-.DS_Store
+*.DS_Store
+*.log
