@@ -6,4 +6,5 @@
 *.gz
 *.aux
 *.synctex
+*.synctex(busy)
 *.toc
