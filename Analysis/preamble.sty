@@ -1,0 +1,92 @@
+% - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - - %
+%   Created by:
+%       - Madison Phelps 
+%           05/30/2022
+%               - added more custom environments
+%           07/25/2022
+%		 - streamlined preamble for NSF internship
+% - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - - %
+
+
+\ProvidesPackage{preamble}
+
+
+% page edits:
+\pdfoutput=1
+\usepackage[margin=3cm]{geometry}
+
+% page layout:
+\setlength{\marginparwidth}{3cm}
+\setlength{\marginparsep}{0.7cm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{12pt}
+
+
+% general packages:
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{soul}
+\usepackage{float}
+\usepackage{framed}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{marginnote}
+\usepackage{comment}
+\usepackage[toc]{appendix}
+\usepackage{setspace}
+
+
+% math packages:
+\usepackage{mathrsfs}
+\usepackage{nicefrac}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage{thmtools}
+\usepackage{etoolbox}
+
+
+% math commands:
+\newcommand{\R}{\mathbb R}
+\newcommand{\F}{\mathcal F} % denotes a particular function space
+\renewcommand{\P}{\mathcal P[\R]} % space of all polynomials on the real line
+\newcommand{\x}{\mathbf x} % n-dimensional vector
+\newcommand{\code}[1]{{\tt #1}}
+
+
+% math edits (not commands):
+\allowdisplaybreaks
+\renewcommand\qedsymbol{$\blacksquare$}
+
+
+% imgs packages:
+\usepackage{graphicx}
+\usepackage{caption}
+\captionsetup{font=footnotesize,labelfont=bf}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,automata,positioning,calc,scopes,decorations.pathmorphing,shapes.geometric,lindenmayersystems,cd}
+
+
+% imgs path setup:
+\graphicspath{{imgs/}{../imgs/}}
+
+
+% color packages:
+\usepackage{color}
+\usepackage{xcolor}
+
+% bibtex setup
+\bibliographystyle{plain}
+
+% environments:
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+%\numberwithin{theorem}{subsection}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+%\numberwithin{definition}{subsection}
+
+% custom comments for editing purposes
+\selectcolormodel{HTML}
+\definecolor{myBlue}{HTML}{7099c2}
+\newcommand{\mphc}[1]{{\color{myBlue} #1}}
+
