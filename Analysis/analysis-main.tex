@@ -22,6 +22,19 @@
 
 \section{Contraction Mapping Theorem}
 
+\subsection{Theorems and Definitions}
+
+\begin{theorem}[Banach Fixed Point Theorem]\label{thm:banach-fixed-point}
+	If $f: X\to X$ is a mapping on a complete metric space $X$ such that there exists $\alpha \in [0,1)$ such that 
+	\[|f(x) - f(y)|\leq \alpha |x-y|\]
+	for all $x,y,\in X$, then $f$ has a unique fixed point. Moreover, for any $x_0\in X$, the sequence of functional iterates 
+	$x_0, f(x_0), f(f(x_0)),\dots$ converges to the fixed point in $X$. 
+\end{theorem}
+
+\break
+
+\subsection{Problems}
+
 \begin{problem}{Fall 2020 \# 1} Let 
 	\[F(x) = \frac{1}{2}\left(x + \frac{a}{x}\right)\]
 		for all $x>0$, where $a>0$ is constant. 
@@ -83,7 +96,56 @@ Another thing with this problem is that it utilizes working with inequalities an
 
 \break 
 
+\begin{problem}{Jordan Qual Prep Week 1 (\& 7), \# 3} Let $f:\R \to \R$ be a Lipshitz continuous function. That is, 
+	\[\frac{ |f(x)- f(y)| }{|x-y|} \leq L \quad \text{ for some constant $L$ and for all $x\neq y$.}\]
+	\begin{enumerate}
+		\item[(a)] Prove that $f$ is uniformly continuous.
+		\item[(b)] Prove that if $L<1$, then $f$ has a fixed point. 
+		\item[(c)] Let $x_{n+1} = \frac{ 1 }{2( 1+ x_n)}$ with $x_0= 0$. Prove that the sequence $\{x_n\}$ is convergent.
+	\end{enumerate}
+\end{problem}
+
 \textbf{Solution:} (a)
 
+Let $\varepsilon > 0$, choose $\delta = \frac{\varepsilon}{L}>0$ and let $x\in\R$ be arbitrary. Then, for any $y\in \R$ such that $|x-y|<\delta$,
+	\[ |f(x) - f(y)| \leq L|x-y| < \varepsilon.\]
+Therefore, $f$ is uniformly continuous because $\delta>0$ is independent of $x\in\R$. 
+
+\textbf{Solution:} (b)
+
+Since $\R$ is complete, $L<1$, and $f(\R)\subseteq \R$, we conclude that $f$ is a contraction mapping on $\R$. By the Banach fixed point theorem (see Theorem \ref{thm:banach-fixed-point}), $f$ has a unique fixed point.
+
+\textbf{Solution:} (c)
+
+Let $t\in\R$. Observe that for any $t\in \R$, $[t,\infty)\subset \R$ is a closed subspace of $\R$ because the complement of $X_t$ is open. Since any closed subset of a complete space, is also complete, we conclude that $X_t$ is complete. 
+
+Define $f(x) = \frac{1}{2(1+x)}$. We will show that for any $t\in \R$ such that $0 \leq t \leq \frac{\sqrt{3} - 1}{2}$, $f$ is a contraction mapping on a complete space defined by $X_t = [t, \infty)$, then conclude that $f$ has a unique fixed point and the sequence of functional iterates for any $x_0\in X_t$ converges to the fixed point. 
+
+First, $x = \frac{\sqrt{3}-1}{2}$ is a fixed point of $f$ by solving $f(x) = x$ and using the quadratic formula on $x^2 + x -\frac{1}{2} = 0$. Now suppose that $t >  \frac{\sqrt{3}-1}{2}$. Then, 
+	\[ t >  \frac{\sqrt{3}-1}{2} = f( \frac{\sqrt{3}-1}{2}) = \frac{1}{2(1+ \frac{\sqrt{3}-1}{2})} > \frac{1}{2(1+t)} = f(t),\]
+and $f(t) < t$ implies that $f(t) \not\in X_t$ for any $t$ larger than the fixed point. Next, $f$ is bounded below by 0 because $f$ is defined on $(-1,\infty)$ and for any $x>-1$, $f(x) > 0$. To see that $t = 0$ is also true, we compute $f(0) = \frac{1}{2} \in X_0 = [0,\infty)$. Thus, for any $0 \leq t \leq \frac{\sqrt{3} - 1}{2}$, $f(X_t) \subseteq X_t$. 
+
+Next, we will show that $f$ is a contraction mapping. Fix $t$, where $0\leq t\leq \frac{\sqrt{3} - 1}{2}$. Then for any distinct $x,y\in X_t$, assume $0\leq t \leq  x < y$. Then, we have $1+y > 1+t  > 1$ and $1+x \leq 1+ t \leq 1$ implies that 
+	\[ \frac{1}{(1+x)(1+y)}< \frac{1}{(1+t)^2} \leq 1.\]
+Because $x$ and $y$ are distinct, $\frac{1}{(1+x)(1+y)}<1$ for all $x,y\in X_t$. So, observe that
+	\begin{align}
+		|f(x) - f(y)| & = \frac{1}{2}\left| \frac{1}{(1+x)} - \left(\frac{1}{(1+y)}\right)\right| \\
+				& = \frac{|x-y|}{2} \left| \frac{1}{(1+x)(1+y)}\right|\\
+				& < \frac{1}{2}|x-y|
+	\end{align}
+which shows that $f$ is a contraction mapping on a complete space with constant $\frac{1}{2}\in[0,1)$. Therefore, by Banach fixed point theorem by choosing $t = 0$, we can conclude that the sequence defined by $f(x_n) = x_{n+1} = \frac{1}{2(1+x_n)}$ with $x_0 = 0 \in X_t$ converges.\\
+
+\hrule 
+
+\textbf{Notes:} Well, this is the problem for you if you want to conquer inequalities. The goal is to think smarter and not harder. When you catch yourself doing the thing that is not ``obvious" you should revert back to the original idea you are trying to prove. Also, keep track at each step that your inequalities are all facing the correct way at each step in your scratch work. It is very easy to make $<$ a $>$ and then sit there for hours thinking about how stupid inequalities are. Also, computing the fixed point doesn't seem as obvious that it is a fixed point because 
+	\[f((\sqrt{3}-1))/2) = 1/(\sqrt{3} + 1)\]
+meaning that for someone that is not good at numbers (which is me) this doesn't make sense. However, in cases like these you should think to multiple by the conjugate. Then, remember the difference of two squares formula of 
+	\[(a-b)(a+b) = a^2 - b^2\]
+that really comes up a lot on this test.
+
+In a nutshell, make sure that you have all of the inequalities worked out before you write the problem. Make sure you know how you want to write it up before you write it. There is no time to write and rewrite. Also, if you know what you are doing, the writing is easy and will not come across as someone that is confused.\\
+
+\hrule \vspace{2pt}
+\hrule 
 
 \end{document}
