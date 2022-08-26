@@ -148,4 +148,87 @@ In a nutshell, make sure that you have all of the inequalities worked out before
 \hrule \vspace{2pt}
 \hrule 
 
+\break
+
+\section{Fundamental Theorem of Calculus Trick}
+
+\subsection{Convergence and Completeness}
+
+\subsubsection{Definitions and Theorems}
+
+\subsubsection{Problems}
+
+\begin{problem}{\#1, Fall 2021} Let $X = \{f \in C[0,1] : f(0) = 0\}$. For each $f\in X$, let 
+	\[\norm{ f } = \max\{ |f'(x)| : x\in [0,1]\}.\]
+Note that the norm of $f$ is defined in terms of the \textit{derivative} of $f$. 
+\begin{enumerate}
+	\item[(a)] Show that if the definition of $X$ is changed by deleting the condition, $f(0) = 0$, 
+		then $\norm{\cdot}$ is not a norm. 
+	\item[(b)] Show that if a sequence $\{f_n\}_{n=1}^\infty$ converges in $X$ with respect to the norm $\norm{\cdot}$,
+		then the sequence $\{f_n\}_{n=1}^\infty$ converges uniformly on $[0,1]$.
+	\item[(c)] Show that the space $X$ is complete with respect to the norm defined above.
+\end{enumerate}
+
+\end{problem}
+
+\textbf{Solution:} (a) 
+
+Choose $f(x) = 1\in C^1[0,1]$ for all $x\in [0,1]$. We compute, and find that $\norm{f} = 0$ but $f\neq0$ on $[0,1]$.
+Therefore, if the condition that $f(0) = 0$ is removed, then $\norm{\cdot}$ does not define a norm.
+
+\textbf{Solution:} (b) 
+
+Let $\varepsilon > 0$ be given. By the Fundamental Theorem of Calculus, write 
+	\begin{equation}\label{eqn:fall2021-1-ftc}
+	 	f_n(x) = \int_0^x f'_n(t) dt \quad \text{ for all } x\in [0,1] \text{ and every } n\in \N,
+	 \end{equation}
+and similarly, for $f\in X$. Since the sequence $\{f_n\}_{n=1}^\infty$ converges in $X$, there exists $n\in \N$ 
+such that for all $n\geq N$, $\norm{f_n - f}<\varepsilon$. Let $x\in[0,1]$ be arbitrary and consider the following, 
+	\begin{align*}
+		|f_n(x) - f(x)| & = \left| \int_0^x f'_n(t) dt - \int_0^x f(t) dt \right|\\
+				    & \leq \int_0^x \left| f'_n(t) - f'(t) \right| dt\\
+				    & \leq \int_0^x \norm{f_n - f} dt\\
+				    & < \varepsilon \cdot x
+	\end{align*}
+By taking the supremum over all $x\in [0,1]$, we have that $\sup_{x\in [0,1]} |f_n(x) - f(x)| < \varepsilon$ for all $x\in [0,1]$.
+That is, $f_n$ converges uniformly to $f$ on $[0,1]$.
+
+\textbf{Solution:} (c)
+
+Let $\varepsilon > 0$ be given and let $\{ f_n \}_{n=1}^\infty$ be an arbitrary Cauchy sequence in $X$. 
+Then there exists $N\in \N$ such that for all $n,m\geq N$,
+	\[ | f'_n(x) - f'_m(x) | \leq \max_{x\in [0,1]}\{| f'_n(x) - f'_m(x) |\} < \varepsilon. \]
+Since the above inequality holds for all $x\in [0,1]$, we conclude that the sequence $\{ f'_n\}_{n=1}^\infty$ is uniformly
+Cauchy on $[0,1]$. A sequence is uniformly Cauchy if and only if the sequence converges uniformly, and, moreover, 
+the sequence converges to a continuous limit. So, 
+	\begin{equation}\label{eqn:fall2021-1-der-unif}
+		 \lim_{n\to \infty} f'_n(x) = g(x) \quad \text{ for some } g \in C[0,1]
+	\end{equation}
+
+Define $f(x) = \lim_{n\to\infty}f_n(x)$ for each $x\in[0,1]$. By the Fundamental Theorem of Calculus, (as defined by equation (\ref{eqn:fall2021-1-ftc}) we may write 
+	\begin{equation*}
+	 f_n(x) = \int_0^x f'_n(t) dt \quad \text{ for all } x\in [0,1] \text{ and every } n\in \N.
+	 \end{equation*}
+Now observe that,
+	\[f(x) = \lim_{n \to \infty} f_n(x) = \lim_{n \to \infty} \int_0^x f'_n(t) dt = \int_0^x \lim_{n\to \infty} f'_n(t) dt = \int_0^x g(t) dt\]
+(note that the above equalities come from our definition of $f$, equations (\ref{eqn:fall2021-1-der-unif}) and 
+(\ref{eqn:fall2021-1-ftc}), and that if a function converges uniformly then we can interchange the integral and limits). 
+Since $g\in C[0,1]$ and $\int_0^x g(t) dt$ is continuous, $f\in C[0,1]$ and it follows that $f'(x) = g(x) \in C[0,1]$, i.e.,
+ $f\in C^1[0,1]$. Lastly, because $f_n\in X$ for all $n\in \N$, $f(0) = \lim_{n\to\infty} f_n(0) = 0$. 
+
+Therefore, $f\in X$ and $X$ is complete with respect to the $\norm{\cdot}$ defined above.\\
+
+\hrule
+
+\textbf{Notes:} Well, this was a beast of a problem and it combined a lot of different facts together. In addition, it has you write the convergence of sequence using the limit definition and also use the the epsilon limit definition of a convergent sequence. One important thing is that converging uniformly is equivalent to uniformly Cauchy in the sup-norm. And, even more, the limit of a sequence of functions that converges uniformly on some space is continuous. In the last part we were kind of clever by writing $f_n$ using the derivative and the fundamental theorem of calculus. 
+
+One nice thing that you did is that you wrote down your ideas and then wrote up the solution. Go you.
+
+Next, the last part kind of hinges on the theorem that states: if you have a sequence of real valued functions each of which is continuously differentiable and that the sequence of the derivatives converges uniformly to some continuous function and if the sequence of functions converges point wise for some $x_0\in [a,b]$, then the sequence of real valued functions converges uniformly and the sequence of derivatives converges to the derivative of the sequence of functions.\\
+
+\hrule\vspace{2pt}
+\hrule
+
+
+
 \end{document}
