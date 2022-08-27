@@ -2,9 +2,66 @@
 
 \usepackage{preamble}
 
+\title{Linear Algebra Qual Solutions}
+\author{Madison Phelps \thanks{Oregon State University, phelpmad@oregonstate.edu}}
+\date{\today}
 
 \begin{document}
 
+\maketitle
 
+\thispagestyle{empty}
 
+\break
+
+\tableofcontents
+
+\thispagestyle{empty}
+
+\break
+
+\section{Eigenvectors and Eigenvalues}
+
+\subsection{Problems} 
+
+\begin{problem}{\#3, Jordan Qual Week 1 - Linear Algebra} Suppose $T$ is a linear operator on $V$, a real vector space. Prove that if every nonzero vector in $V$ is an eigenvector of $T$, then $T$ is a multiple of the identity.
+\end{problem}
+
+\textbf{Solution:}
+
+Assume dim$(V) = n$. Let $\beta = \{\beta_1, \beta_2, \dots, \beta_n\}$ be a basis for $V$. Then, each $\beta_i\in V$ is an eigenvector of $T$ with eigenvalue $\lambda_i$ for $i = 1, \dots, n$. That is, $T\beta_i = \lambda_i \beta_i$. 
+
+Set $v = \beta_1 + \beta_2 + \cdots + \beta_n\in V$. Then $v$ is an eigenvector of $T$ corresponding to
+ eigenvalue $\lambda\in\R$. Observe,
+ 	\begin{align}
+		\lambda \beta_1 + \lambda \beta_2 + \cdots + \lambda \beta_n 
+			& = \lambda(\beta_1+\cdots+\beta_n) \label{eqn:jqual-week1-RHS}\\
+			& = \lambda v \nonumber \\
+			& = Tv \nonumber \\
+			& = T(\beta_1+\cdots+\beta_n) \nonumber \\
+			& = T\beta_1 + \cdots + T\beta_n \nonumber \\
+			& =  \lambda_1 \beta_1 + \cdots + \lambda_n \beta_n .\label{eqn:jqual-week1-LHS}
+	\end{align}
+If $\lambda = 0$ in line (\ref{eqn:jqual-week1-RHS}), then because $\beta$ is linearly independent, 
+$\lambda = \lambda_i = 0$ for all $i = 1,\dots n$. Otherwise, $\lambda$ is non zero and if we subtract
+ line  (\ref{eqn:jqual-week1-LHS}) from line (\ref{eqn:jqual-week1-LHS}) we obtain,
+ 	\[ (\lambda - \lambda_1) \beta_1 + \cdots + (\lambda - \lambda_n) \beta_n = 0.\]
+Since $\beta$ is linearly independent, $\lambda = \lambda_1=\cdots = \lambda_n$. Thus, $T$ only has one eigenvalue such that $Tx = \lambda x$ for all $x\in V$ and writing the matrix representation of $T$ with respect to the arbitrary basis $\beta$ is 
+	\[ [T]_\beta = \begin{bmatrix} 
+				\lambda & 0 & 0 & \dots & 0\\
+				0 & \lambda & 0 & \dots & 0\\
+				\vdots & \vdots & \vdots & \ddots & 0\\
+				0 & 0 & 0 & \dots & \lambda 
+				\end{bmatrix}\]
+which is a multiple of the $n\times n$ identity matrix. Note that if a nonzero term appeared off of the diagonal, then this would imply that there exists a vector in $V$ that is not an eigenvector, which contradicts our assumption that all vectors in $V$ are eigenvectors. Since $\beta$ was chosen arbitrarily, every matrix representation of $T$ is of the above form. Therefore, $T$ is a multiple of the identity matrix. \\
+
+\hrule 
+
+\textbf{Notes:} Well, this problem boils down to thinking about the eigenvalue associated to each eigenvector. If every eigenvalue is an eigenvector then there is only one true eigenvalue. We show this by taking an arbitrary basis $\beta$ and then each basis element is itself an eigenvector which has a corresponding eigenvalue. We use the fact that $\beta$ is linearly independent to show that all eigenvalues must equal. If we have zero, that's also fine because the sum of the $\lambda_i \beta_i$ is a linear combination equaling zero, which forces each $\lambda_i = 0$. Then, it is still needed to show that $T$ is a multiple of the identity operator, or that $T$ is a multiple of the identity matrix.\\
+
+Another way to look at this is to take two distinct vectors in $V$ (and linearly independent) to show by contradiction that they must be equal because $(\lambda - \lambda_1) v_1 + (\lambda - \lambda_2) v_2 = 0$. Next you can write the matrix representation of $T$ in its Jordan Canonical Form because $T$ only has one eigenvalue, the Jordan Canonical Form could potentially have 1's on the super-diagonal which correspond to generalized eigenvectors. But, these vectors are still in $V$ which implies that there are no 1's on the super-diagonal. We can conclude the same thing that $T$ is a multiple 
+of the identity.\\
+
+\hrule \vspace{2pt}
+\hrule
 \end{document}
