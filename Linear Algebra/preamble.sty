@@ -92,6 +92,12 @@
 \newtheorem{definition}{Definition}
 %\numberwithin{definition}{subsection}
 
+\theoremstyle{definition} %exercise
+\newtheorem{problemdef}{Problem}
+\newenvironment{problem}[1] %number of exercise
+    {\renewcommand\theproblemdef{#1}\problemdef}
+    {\endproblemdef}
+
 % custom comments for editing purposes
 \selectcolormodel{HTML}
 \definecolor{myBlue}{HTML}{7099c2}
