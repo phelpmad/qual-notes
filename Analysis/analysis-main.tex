@@ -229,6 +229,71 @@ Next, the last part kind of hinges on the theorem that states: if you have a seq
 \hrule\vspace{2pt}
 \hrule
 
+\break
 
+\section{Arzeli-Ascoli Theorem}
 
+\subsection{Problems}
+
+\begin{problem}{\#6, Fall 2019} Let $C[0,1] = \{f: [0,1]\to\R\}$ denote the space of all continuous functions. You can use that this is a complete metric space with respect to the sup-norm, $\norm{f} = \sup\{|f(x)|: x\in[0,1]\}$. Define
+	\[ \F = \{ f\in C[0,1] : |f(x) - f(y)| \leq |x-y|, \text{ for all } x,y\in[0,1]\}\]
+\begin{enumerate}
+	\item[(a)] Show that $\F$ is closed, but not compact in $C[0,1]$.
+	\item[(b)] Show that 
+		\[ \F_1 = \{ f\in \F : \int_0^1 f^2(x) dx = 1\} \]
+	is compact in $C[0,1]$.
+\end{enumerate}
+\end{problem}
+
+\textbf{Solution:} (a) 
+
+Define $f_n(x) = n$ for $n\in \N$. Then, $f_n\in \F$ because $|f_n(x) - f_n(y)| = 0 \leq |x-y|$ for all $n\in \N$. However, as $n\to\infty$, $f_n(x) \to \infty$ implying that $\F$ is not bounded and therefore, is not totally bounded and is not compact as a result. \footnote{Also note that you can choose $f_n(x) = n+x$. Here we have created a sequence of functions in the set that is unbounded. Hence, the sequence does not have a Cauchy subsequence because any two functions of our set will differ by 1. A set is totally bounded if and only if every sequence in the space has a Cauchy subsequence. So, if we choose our definition of compact as "Complete and Totally Bounded", then $\F$ is not compact because $\F$ is not totally bounded.}
+
+Let $\varepsilon > 0$ and let $\{f_n\}_{n=1}^\infty$ be an arbitrary convergent sequence in $\F$ that converges to $f\in C[0,1]$ (since $C[0,1]$ is complete). Then there exists some $N\in\N$ such that for all $n\geq N$, 
+	\[ |f_n(x) - f(x)| \leq \sup_{x\in [0,1]}\{|f_n(x) - f(x)|\} < \frac{\varepsilon}{2}\quad \text{ for all } x\in [0,1].\]
+Observe,
+	\begin{align*}
+		|f(x) - f(y)| & \leq |f_n(x) - f(x)| + |f_n(x) - f_n(y)| + |f_n(y) - f(y)|\\
+				& < \frac{\varepsilon}{2} + |x-y| + \frac{\varepsilon}{2}\\
+				& = \varepsilon + |x-y|
+	\end{align*}
+holds for all $\varepsilon > 0$ and as $\varepsilon \to 0$, $|f(x) - f(y)| < |x-y|$ which means that $f\in \F$. Therefore, $f$ contains all its limit points and $\F$ is closed.
+
+\textbf{Solution:} (b) 
+
+We will show that $\F_1$ is closed, equicontinuous, and uniformly bounded.
+
+\begin{enumerate}
+	\item Let $\{f_n\}_{n=1}^\infty$ be an arbitrary convergent sequence in $\F_1$ that converges to $f$. Since 
+		$\F_1\subseteq C[0,1]$ and $C[0,1]$ is complete under the sup-norm, convergence of this sequence 
+		implies that $f_n$ converges uniformly to $f$ on $[0,1]$. Since each $f_n\in \F_1$, we see that $F_1$ is
+		 closed because
+			\[ 1 = \lim_{n\to\infty} \int_0^1 f_n^2(x) dx = \int_0^1 \lim_{n\to\infty} f_n^2(x) dx = \int_0^1 f^2(x) dx,\]
+		that is $f\in \F_1$. 
+	\item Let $\varepsilon>0$ be given. Choose $\delta = \varepsilon > 0$. Then, for any $f\in \F_1 \subset \F$, 
+		\[ |f(x) - f(y)| \leq |x-y| < \delta = \varepsilon.\]
+		So, $\F_1$ is equicontinuous.
+		
+	\item Let $f\in \F_1\subset \F$ be arbitrary, then observe
+			\[ |f(x) - f(0)| \leq |x-0| = |x|\]
+		and expanding the inequality (as $-|x| \leq f(x) - f(0) \leq |x|$), repackaging, and using the triangle inequality
+		 we have that 
+			\[|f(x)| \leq |f(0)| + |x|\]
+		for all $f\in \F_1$. Suppose $f(0) = \pm 2$. Since $f$ is Lipschitz with constant $1$ at best we can bound $f$
+		above by the line $g_1(x) = 2-x$ and below by the line $g_2(x) = -2+x$. Then, by squaring and integrating 
+		the inequality $|f(x)| \leq |f(0)| + |x|$, we have
+		 	\[ 1 = \int_0^1 f^2(x) dx < \int_0^1(2-x)^2 dx = \frac{7}{3}\]
+		which shows that the $y$-intercept of $f$ cannot be above $2$ nor below $-2$ for any $f\in \F_1$.
+		Thus, 
+			\[|f(x)| \leq |f(0)| + |x| \leq 2 + |x|\]
+		for all $f\in \F_1$. By taking the supremum over all $x\in [0,1]$, we conclude that the set
+		 $\{f(x) : x\in [0,1], f\in\F_1\}$ is bounded with an upper bound of $M = 3 > 0$. Therefore, $\F_1$ is uniformly bounded.
+\end{enumerate}
+	
+	Therefore, by the Arzela-Ascoli theorem, given that $[0,1]$ is a compact metric space and $\F_1$ is closed, 
+	equicontinuous, and uniformly bounded, $\F_1$ is compact. \\
+	
+\hrule
+
+So, this is a really good problem because it makes you think about the behavior of the functions themselves. Also, things may ``look" like they work out, but then, you can find a counterexample that breaks it. 
 \end{document}
