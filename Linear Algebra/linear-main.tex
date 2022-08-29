@@ -121,6 +121,122 @@ and
 			\vdots & \vdots & \vdots & \vdots& \vdots& \vdots & \vdots & \vdots \\
 			0 & 0 & \cdots & 0 & 0 & 0 & \cdots & 0
 			\end{bmatrix}\]
-In words, because $A$ diagonal, multiplying $E$ by $A$ on the right scales the $i$-th column of $E$ by the $A_{ii}$ entry in $A$. Then, multiplying $E$ by $A$ on the left scales the $i$-th row by the entry $A_{ii}$. Since $A$ commutes with every matrix, $EA=AE$ implies that $\lambda = \lambda_i$ which contradicts our assumption that $\lambda\neq \lambda_i$. Therefore, every entry along the diagonal of $A$ equals $\lambda$, and so, $A$ is a multiple of the identity matrix, where $A$ is the matrix representation of the linear operator $T$ with respect to an arbitrary basis $\beta$.  
+In words, because $A$ diagonal, multiplying $E$ by $A$ on the right scales the $i$-th column of $E$ by the $A_{ii}$ entry in $A$. Then, multiplying $E$ by $A$ on the left scales the $i$-th row by the entry $A_{ii}$. Since $A$ commutes with every matrix, $EA=AE$ implies that $\lambda = \lambda_i$ which contradicts our assumption that $\lambda\neq \lambda_i$. Therefore, every entry along the diagonal of $A$ equals $\lambda$, and so, $A$ is a multiple of the identity matrix, where $A$ is the matrix representation of the linear operator $T$ with respect to an arbitrary basis $\beta$. \\
 
+\hrule 
+
+\textbf{Notes:} Well, again. Really good problem to look at. Yes, it was not a qual problem but it also points out a tool that we can use whenever we see ``for every" something about the problem does "BLANK" and how we can sometimes use that to our advantage. Also, this problem is a good way to fuss with notation. Of course on the quals you should really label the pictures but at least now you have some notation to fall back on. For example, 
+	\begin{itemize}
+		\item we define $E$ to be a matrix
+		\item entries in $E$ are given by $E_{ij}$ to denote the entry in the $i$-th row and $j$-th 
+			column of $E$, i.e., the $(i,j)$-th entry
+		\item columns of $E$ are denoted by $E_j$
+		\item while rows of $E$ are denoted by $E^i$
+	\end{itemize}
+Just stick with the above notation and redefine $E$ if you are using the matrix in different ways. They will be okay with 
+redefining the matrix because they are mathematicians. 
+
+Matrix multiplication has always fucked me up. So, with this one you really had to think about what the matrix $E$ is doing in the first part vs in the second part. Actually, we are talking about the same thing just in the first part $E$ is the diagonal matrix whereas in the second part, $A$ is the diagonal matrix. Think about how a row vector times a matrix is a row vector and a matrix times a column vector is a column vector. So,
+
+	\[ \begin{bmatrix}\begin{array}{c!{\vline width 2pt} c!{\vline width 2pt} c !{\vline width 2pt} c !{\vline width 2pt} c}
+				\; & \; & \; & \; & \; \\ 
+				\; & \; & \; & \; & \;\\
+				\; & \; & \; & \;& \; \\
+				\; & \; & \; & \;& \; \\
+			\end{array}
+		\end{bmatrix}
+		\begin{bmatrix}
+		* \\
+		* \\
+		* \\
+		* 
+		\end{bmatrix} 
+		= * 
+		\begin{bmatrix}
+		\begin{array} {c!{\vline width 2pt} l}
+		 \; &\\
+		 \; &\\
+		 \; &\\
+		 \; &
+		\end{array}
+		\end{bmatrix} 
+		 + * 
+		\begin{bmatrix}
+		\begin{array} {c!{\vline width 2pt} l}
+		 \; &\\
+		 \; &\\
+		 \; &\\
+		 \; &
+		\end{array}
+		\end{bmatrix} 
+		 + *
+		\begin{bmatrix}
+		\begin{array} {c!{\vline width 2pt} l}
+		 \; &\\
+		 \; &\\
+		 \; &\\
+		 \; &
+		\end{array}
+		\end{bmatrix} 
+		 + * 
+		\begin{bmatrix}
+		\begin{array} {c!{\vline width 2pt} l}
+		 \; &\\
+		 \; &\\
+		 \; &\\
+		 \; &
+		\end{array}
+		\end{bmatrix} 
+	\]
+	
+In words, multiplying a matrix by a column vector means that each entry of the column vector scales the corresponding column in the matrix by that entry. That sounds weird, the first entry of the column vector scales the first column of $A$, the second entry in the column vector scales the second column of $A$, and continues. We can think about the column vector rotating 90 degrees and imposing into the matrix $A$ and then collapsing horizontally to create the resulting column vector $Ax = b$.
+
+On the other side, if we multiply $A$ by a row vector, we are multiplying $A$ on the left by the row vector and similarly we have 
+\begin{align*}
+	\begin{bmatrix} 
+		* & * & * & * 
+	\end{bmatrix}
+	\begin{bmatrix}
+	\begin{array}{c c c c c c}
+	& & & & & \\ \Xhline{2pt}
+	& & & & & \\ \Xhline{2pt}
+	& & & & & \\ \Xhline{2pt}
+	& & & & &\\ \Xhline{2pt}
+	& & & & &
+	\end{array}
+	\end{bmatrix}  = \;\;\;\;\;&* \begin{bmatrix}\begin{array}{c c c c c c}
+	& & & & & \\ \Xhline{2pt}
+	& & & & & \\ 
+	\end{array}
+	\end{bmatrix} \\
+ + \;\;& 
+	* \begin{bmatrix}\begin{array}{c c c c c c}
+	& & & & & \\ \Xhline{2pt}
+	& & & & & \\ 
+	\end{array}
+	\end{bmatrix} \\\\
+ + \;\;& 
+	* \begin{bmatrix}\begin{array}{c c c c c c}
+	& & & & & \\ \Xhline{2pt}
+	& & & & & \\ 
+	\end{array}
+	\end{bmatrix} \\\\
++\;\; & 
+	* \begin{bmatrix}\begin{array}{c c c c c c}
+	& & & & & \\ \Xhline{2pt}
+	& & & & & \\ 
+	\end{array}
+	\end{bmatrix}\\
+	\cline{2-2} 
+	= &\;\;\; \text{the row vector}
+\end{align*}
+So, what this does is that the row vector is rotating 90 degrees and then imposing itself on the rows of $A$ to scale each row by the entries in the row vector. Then, we add together by collapsing downwards (vertically) to compute the resulting row vector of $x^TA = b^T$.
+
+So, when we are working with diagonal matrices we do the same thing because all entries off the diagonal are 0 the resulting computation of $A$ times a diagonal matrix on the left will scale the rows by each diagonal entry whereas if we multiply $A$ by the diagonal matrix on the right we will scale each column of $A$ by the corresponding diagonal entry. 
+
+Super super cool stuff.\\
+
+\hrule\vspace{2pt}
+\hrule
+\break 
 \end{document}
