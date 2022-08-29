@@ -64,4 +64,63 @@ of the identity.\\
 
 \hrule \vspace{2pt}
 \hrule
+
+\break 
+
+\begin{problem}{\# 3, Jordan Qual Week 1} Let $T$ be a linear operator on a finite dimensional vector space $V$. Prove that
+$T$ is a multiple of the identity if and only if $T$ commutes with every other linear operator on $V$. 
+\end{problem}
+
+\textbf{Solution:} $\implies$ 
+
+Suppose $T$ is a multiple of the identity operator for some $\lambda$ in the underlying field of $V$. Since the identity commutes with every other linear operator, $T$ commutes with every other linear operator on $V$.
+
+
+\textbf{Solution:} $\impliedby$ 
+
+Let $\beta$ be an arbitrary basis for $V$ and let $A = [T]_\beta$ be the matrix representation of $T$ with respect to the basis $\beta$. 
+
+Define $E$ to be the $n\times n$ matrix with $E_{ii} = 1$ and all other entries are zero for some $i = 1, \dots, n$. We compute,
+	\[ AE = \begin{bmatrix} 0 & \cdots & 0 & A_{1i} & 0 & \cdots & 0\\
+					   0 & \cdots & 0 & A_{2i} & 0 & \cdots & 0 \\
+					   \vdots & \vdots & \vdots& \vdots& \vdots & \vdots & \vdots \\
+					    0 & \cdots & 0 & A_{ii} & 0 & \cdots & 0 \\
+					     \vdots & \vdots & \vdots& \vdots& \vdots & \vdots & \vdots \\
+					     0 & \cdots & 0 & A_{ni} & 0 & \cdots & 0
+		\end{bmatrix}\]
+and 
+	\[ EA = \begin{bmatrix} 0 & \cdots & 0 & 0 & \cdots & 0\\
+					   \vdots & \vdots & \vdots& \vdots& \vdots & \vdots \\
+					   0 & \cdots & 0 & 0& \cdots & 0 \\
+					    A_{i1} & A_{i2} & \cdots & A_{ii} & \cdots & A_{in} \\
+					    0 & \cdots & 0 & 0&  \cdots & 0 \\
+					     \vdots & \vdots & \vdots& \vdots& \vdots & \vdots \\
+					     0 & \cdots & 0 & 0 &  \cdots & 0
+		\end{bmatrix}\]
+In words, multiplying on the left by $E$ results in the matrix whose $i$-th column is the $i$-th column of $A$ and all other entries are 0. Multiplying on the right by $E$ results in the matrix whose $i$-th row is the $i$-th row of $A$. Since $A$ commutes with every matrix, $EA = AE$. Also, $i = 1,\dots, n$ is arbitrary in the above calculation and so, we conclude that for all $i\neq j$, $A_{ij} = 0$. That is, $A$ is a diagonal matrix.
+%Then, for each $i = 1, \dots, n$ multiplying $A$ by $E_{ii}$ on the left, i.e., we compute $E_{ii} A$, for which the resulting matrixs selects the $i$-th row of $A$ and every other entry is 0. That is, $a_{ik}\neq 0$ for $k = 1, \dots, n$. Now, multiplying $A$ by $E_{ii}$ on the right selects the $i$-th column of $A$ and every other entry is 0. That is, $a_{ki} \neq 0$ for $k = 1, \dots, n$. Since $A$ commutes with every matrix, we have that $E_{ii} A = A E_{ii}$. So, for all $k\neq i$, $a_{ki} = a_{ik} = 0$. Therefore, $A$ is a diagonal matrix. 
+
+Define $E$ to be the matrix with $E_{11} = 1$ and $E_{1i}$ for some $i = 1,\dots, n$, i.e., 
+	\[ E = \begin{bmatrix} 1 & 0 & \cdots & 0 & 1 & 0 & \cdots & 0\\
+			0 & 0 & \cdots & 0 & 0 & 0 & \cdots & 0\\
+			\vdots & \vdots & \vdots & \vdots& \vdots& \vdots & \vdots & \vdots \\
+			\vdots & \vdots & \vdots & \vdots& \vdots& \vdots & \vdots & \vdots \\
+			0 & 0 & \cdots & 0 & 0 & 0 & \cdots & 0
+			\end{bmatrix}\]
+Since $A$ is diagonal, the eigenvalues are along the diagonal of the matrix. Suppose that one entry along the diagonal is different. Specifically, suppose the $i$-th entry along the diagonal equals $\lambda_i$ and every other entry equals $\lambda$ such that $\lambda\neq \lambda_i$. We compute,
+	\[ EA = \begin{bmatrix} \lambda & 0 & \cdots & 0 & \lambda_i & 0 & \cdots & 0\\
+			0 & 0 & \cdots & 0 & 0 & 0 & \cdots & 0\\
+			\vdots & \vdots & \vdots & \vdots& \vdots& \vdots & \vdots & \vdots \\
+			\vdots & \vdots & \vdots & \vdots& \vdots& \vdots & \vdots & \vdots \\
+			0 & 0 & \cdots & 0 & 0 & 0 & \cdots & 0
+			\end{bmatrix}\]
+and 
+	\[ AE = \begin{bmatrix} \lambda & 0 & \cdots & 0 & \lambda & 0 & \cdots & 0\\
+			0 & 0 & \cdots & 0 & 0 & 0 & \cdots & 0\\
+			\vdots & \vdots & \vdots & \vdots& \vdots& \vdots & \vdots & \vdots \\
+			\vdots & \vdots & \vdots & \vdots& \vdots& \vdots & \vdots & \vdots \\
+			0 & 0 & \cdots & 0 & 0 & 0 & \cdots & 0
+			\end{bmatrix}\]
+In words, because $A$ diagonal, multiplying $E$ by $A$ on the right scales the $i$-th column of $E$ by the $A_{ii}$ entry in $A$. Then, multiplying $E$ by $A$ on the left scales the $i$-th row by the entry $A_{ii}$. Since $A$ commutes with every matrix, $EA=AE$ implies that $\lambda = \lambda_i$ which contradicts our assumption that $\lambda\neq \lambda_i$. Therefore, every entry along the diagonal of $A$ equals $\lambda$, and so, $A$ is a multiple of the identity matrix, where $A$ is the matrix representation of the linear operator $T$ with respect to an arbitrary basis $\beta$.  
+
 \end{document}
