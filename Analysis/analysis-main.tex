@@ -165,7 +165,60 @@ In a nutshell, make sure that you have all of the inequalities worked out before
 
 \textbf{Solution:} (a) 
 
-Let $\varepsilon>0$ be given. Since $(\beta_n)$, $(\gamma_n)\in \ell_\infty$ are fixed sequences, set $\delta = \frac{\varepsilon}{\norm{|\beta_n| + |\gamma_n|}_\infty}$
+Let $\varepsilon>0$ be given. Since $(\beta_n)$, $(\gamma_n)\in \ell_\infty$ are fixed sequences, set $\delta = \nicefrac{\varepsilon}{\norm{|\beta_n| + |\gamma_n|}_\infty} > 0$ and consider any $(x_n)$ and $(y_n)$ in $\ell_\infty$ with $\norm{x_n - y_n} < \delta$. Observe that for any $n\in \N$, $|x_n - y_n| < \norm{x_n - y_n} <\delta$ also holds. We compute, 
+	\begin{align*}
+		|T(x_n) - T(y_n)| & = | a_n + \beta_n x_{n+1} + \gamma_n x_{n+2} - (a_n + \beta_n y_{n+1} + \gamma_n y_{n+2}) |\\
+					 & = |\beta_n(x_{n+1} - y_{n+1}) + \gamma_n(x_{n+2} - y_{n+2})|\\
+					 & \leq  |\beta_n||x_{n+1} - y_{n+1}| + |\gamma_n||x_{n+2} - y_{n+2}|\\
+					 & \leq |\beta_n|\norm{|x_n - y_{n}|}_\infty + |\gamma_n|\norm{|x_{n} - y_{n}|}_\infty\\
+					 & = (|\beta_n| + |\gamma_n|) \norm{|x_{n} - y_{n}|}_\infty
+		\end{align*}
+By taking the supremum over all $n \in \N$ of the inequality $|T(x_n) - T(y_n)| \leq (|\beta_n| + |\gamma_n|) \norm{|x_{n} - y_{n}|}_\infty$ we obtain
+	\[\norm{T(x_n) - T(y_n)}_\infty \leq \norm{|\beta_n| + |\gamma_n|}_\infty \norm{|x_{n} - y_{n}|}_\infty
+		< \norm{|\beta_n| + |\gamma_n|}_\infty  \nicefrac{\varepsilon}{\norm{|\beta_n| + |\gamma_n|}} = \varepsilon \]
+Thus, for all $\varepsilon > 0$ there exists $\delta > 0$ such that for all sequences in $\ell_\infty$ with $\norm{x_n - y_n}_\infty < \delta$, $\norm{T(x_n) - T(y_n)}_\infty<\varepsilon$, and so, $T$ is continuous. 
+
+Since each sequence in the definition of $T$ is in $\ell_\infty$, the sup-norm of each sequence is finite which means that the sup-norm, $\norm{T(b_n)}_\infty < \infty$ for any sequence $(b_n)\in \ell_\infty$.
+
+Therefore, $T$ is a well-defined continuous mapping on $\ell_\infty$.
+
+\textbf{Solution:} (b) 
+
+Since $\ell_\infty$ is complete with respect to the sup-norm and $\norm{|\beta_n| + |\gamma_n|}_\infty < 1$ from part (a) we see that 
+	\[\norm{T(x_n) - T(y_n)}_\infty \leq \norm{|\beta_n| + |\gamma_n|}_\infty \norm{|x_{n} - y_{n}|}_\infty\]
+implies that $T$ is a (strict) contraction mapping on $\ell_\infty$. By the Banach fixed point theorem, $T$ has a (unique) fixed point.
+
+\textbf{Solution:} (c)
+
+Let $\alpha, \beta, \gamma \in \R$ be such that $|\gamma| + |\beta| < |\alpha|$. Let $(a_n)\in\ell_\infty$ be arbitrary. Observe that $\alpha \neq 0$ since the left hand side of the inequality is always positive, which means we can divide by $\alpha$. Define the (fixed) sequences 
+	\[ \alpha_n := \frac{a_n}{\alpha}, \quad, \beta_n:= \frac{-\beta}{\alpha}, \;\text{ and } \; \gamma_n := \frac{-\gamma}{\alpha} \quad \quad \text{ for all } n\in \N.\]
+Then $T$ is given by
+	\[T(b_n) = \alpha_n + \beta_n b_{n+1} + \gamma_n b_{n+2}\]
+for each $(b_n)\in\ell_\infty$. Since $\norm{|\beta_n|}_\infty =  \left| \frac{\beta}{\alpha}\right|$ and $\norm{|\gamma_n|} = \left| \frac{\gamma}{\alpha}\right|$ for which the sequence defined by $(|\gamma_n| +|\beta_n|)$ has norm equal to 
+	\[\norm{|\beta_n| + |\gamma_n|}_\infty =\left| \frac{\gamma}{\alpha}\right| + \left| \frac{\beta}{\alpha}\right| < 1,\] 
+because each of the fixed sequences are constant sequences and by the assumptions on $\alpha, \beta, \gamma\in\R$, we conclude by part (b) that $T$ has (unique) fixed point. So, there exists $(b_n)\in\ell_\infty$ such that $T(b_n) = b_n$ for all $n\in \N$. Using the definition of $T$ with our fixed sequences, consider
+	\[T(b_n) = \alpha_n + \beta_n b_{n+1} + \gamma_n b_{n+2} = b_n,\]
+which gives
+	\[ \frac{a_n}{\alpha} - \frac{\beta}{\alpha} b_{n+1} - \frac{\gamma}{\alpha} b_{n+2} = b_n,\]
+and multiplying by $\alpha$ and rearranging the terms we have that 
+	\[a_n = \alpha b_n + \beta b_{n+1} + \gamma b_{n+2}\]
+for all $n\in \N$ and any arbitrary $(a_n) \in \ell_\infty$.
+
+
+Now assume that the condition $|\gamma| + |\beta| < |\alpha|$ is removed. Let $(a_n)$ be a nonzero sequence in $\ell_\infty$ and choose $\alpha = \beta = \gamma = 0$, and let $(b_n)\in \ell_\infty$ be arbitrary. Because $(a_n)$ is a nonzero sequence, there exists some $m\in\N$ such that the term $a_m\neq 0$ which means that when we compute
+	\[0\neq a_m = 0\cdot b_m + 0\cdot b_{m+1} + 0\cdot b_{m+2} = 0\]
+the claim fails to hold for all $n\in \N$.\\
+
+\hrule
+
+\textbf{Notes:} Well fuuuuuucking yay. This one has been a mystery to me for a year. I remember spending hours on the problem with Tyler and Josh in a room in Kidder hall and we were all confused on how to actually attack the problem. But, this problem has hints riddled throughout. First, it's weird that they did not choose to use $(\alpha_n)$ as the fixed sequences, they used $(a_n)$ instead. At first, this still felt weird but I moved on to try and prove part (a). I looked at part (b) and saw that they probably wanted us to use part (a) to prove part (b) to apply the contraction mapping theorem. So, this gave me the idea to somehow get the norm of the sum of the absolute values of the gamma and beta fixed sequences to appear in my proof of continuity of $T$. The harder part was to determine when exactly I needed to take the supremum over $n\in\N$. This is a common trick when proving various things with inequalities such as continuity, equicontinuity, contractions, etc. However, replacing the terms $|x_{n+1} - y_{n+1}|$ with the sup-norm works to eliminate the weirdness of the indices not matching. This took me a while, I started to apply the triangle inequality to write things out... but then I felt like I was working too hard to I wasn't getting the ``trick". These questions which horrendous notation normally boil down to an easy trick if you see it. Praveeni helped with the last trick of dividing by $\alpha$. Also, the fact that each sequence in the definition of $T$ were fixed and how they chose $(a_n)$ and not $(\alpha_n)$ made me think to just define sequences that work. From part (b) we get the existence of the sequence $(b_n)$ and then all is left to show is that the equation is satisfied for the fixed sequences we chose.\\
+
+The last part to show that the conclusion fails if we do not have the conditions on the real numbers $\alpha, \beta,$ and $\gamma$ stumped me for a while. But, why not choose them all to be zero and choose a random sequence with at least one nonzero term. Then, the sequence is in the space because were chosing it to be. I guess I could choose the sequence $(a_n) := (1, 0, 0, \dots, )$ as my sequence because the sup-norm equals one and then we get that $1\neq 0$. I was trying to be tricky and overcomplicate the idea but it boils down to something doesn't equal something else when the condition is removed.\\
+
+Really good problem and I am proud of myself that I figured it out.\\
+
+\hrule\vspace{2pt}
+\hrule
 
 
 \break
@@ -173,8 +226,6 @@ Let $\varepsilon>0$ be given. Since $(\beta_n)$, $(\gamma_n)\in \ell_\infty$ are
 \section{Fundamental Theorem of Calculus Trick}
 
 \subsection{Convergence and Completeness}
-
-\subsubsection{Definitions and Theorems}
 
 \subsubsection{Problems}
 
