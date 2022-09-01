@@ -150,6 +150,26 @@ In a nutshell, make sure that you have all of the inequalities worked out before
 
 \break
 
+\begin{problem}{\#5, Spring 2021} Let $(a_n)$, $(\beta_n)$, $(\gamma_n)\in \ell_\infty$ be fixed sequences. For a sequence $(b_n)$ define 
+	\[ T(b_n) = a_n + \beta_n b_{n+1} + \gamma_n b_{n+2}, \quad n\in \N.\]
+\begin{enumerate}
+	\item[(a)] Prove that $T$ is a well-defined continuous mapping from $\ell_\infty$ to $\ell_\infty$.
+	\item[(b)] Prove that if $\norm{|\beta_n| + |\gamma_n|}_\infty < 1$, then $T$ has a fixed point. (Here $(|\beta_n|)$, 
+			$(|\gamma_n|)$ are the sequences of the absolute values.)
+	\item[(c)] Let $\alpha, \beta, \gamma\in\R$ such that $|\beta| + |\gamma| < |\alpha|$. Prove that for any $(a_n)\in \ell_\infty$
+			there exists $(b_n)\in\ell_\infty$ such that for all $n\in \N$
+				\[a_n = \alpha b_n + \beta b_{n+1} + \gamma b_{n+2}.\]
+			Also show that the result fails if the assumption $|\beta| + |\gamma| < |\alpha|$ is removed. 
+\end{enumerate}
+\end{problem}
+
+\textbf{Solution:} (a) 
+
+Let $\varepsilon>0$ be given. Since $(\beta_n)$, $(\gamma_n)\in \ell_\infty$ are fixed sequences, set $\delta = \frac{\varepsilon}{\norm{|\beta_n| + |\gamma_n|}_\infty}$
+
+
+\break
+
 \section{Fundamental Theorem of Calculus Trick}
 
 \subsection{Convergence and Completeness}
@@ -295,5 +315,55 @@ We will show that $\F_1$ is closed, equicontinuous, and uniformly bounded.
 	
 \hrule
 
-So, this is a really good problem because it makes you think about the behavior of the functions themselves. Also, things may ``look" like they work out, but then, you can find a counterexample that breaks it. 
+So, this is a really good problem because it makes you think about the behavior of the functions themselves. Also, things may ``look" like they work out, but then, you can find a counterexample that breaks it. \\
+
+\hrule \vspace{2pt}
+\hrule
+
+\break
+
+\section{Sequential Compactness to the Rescue}
+
+\subsection{Problems}
+
+\begin{problem}{\#, Spring 2018} INCLUDE PROBLEM STATEMENT.
+
+\end{problem}
+
+\textbf{Solution:} (a)
+
+(Proof by Contradiction).
+
+Let $0 < \alpha < \beta < 1$ be arbitrary and suppose 
+\[d(K_\alpha,\partial K_\beta) = 0.\]
+
+We first show that $K_\alpha$ and $\partial K_\beta$ are compact in $\R^m$. Since $\lim\inf_{|x|\to\infty} f(x) \geq 2$, there exists some $M>0$ in $\R$ such that for any $x\in \R^n$ with $|x|\leq M$, $f(x) < \frac{3}{2}$ (otherwise, 2 would not be the limit inferior). Then, $K_\alpha$ and $\partial K_\beta$ are bounded by $M$ because $f(x) \leq \alpha < \frac{3}{2}$ for all $x\in K_\alpha$ and $f(x) = \beta < \frac{3}{2}$ for all $x\in \partial K_\beta$. Observe that the sets can be written as the pre-image of $f$ under a specific set, i.e.,
+\[K_\alpha = f^{-1}((-\infty, \alpha])\]
+\[\partial K_\beta = f^{-1}(\{\beta\}).\]
+Since $(-\infty, \alpha]$ and $\{\beta\}$ are closed in $\R^m$ (under the Euclidean metric) and $f$ is continuous, the pre-image of closed sets under continuous functions are closed. Therefore, by the Heine-Borel theorem in $\R^m$, each set is compact if and only if they are closed and bounded.
+
+Let $\{x_n\}\subset K_\alpha$ and $\{y_n\}\subset \partial K_\beta$ be sequences such that 
+	\[ \lim_{n\to\infty} |x_n - y_n| = 0\]
+(which follows by the assumption that $d(K_\alpha,\partial K_\beta) = 0$). Since $K_\alpha$ is compact there exists a subsequence $\{x_{n_k}\}$ of $\{x_n\}$ that converges to $x\in K_\alpha$. Similarly, by the compactness of $\partial K_\beta$ there exists a subsequence $\{y_{n_k}\}$ of $\{y_n\}$ that converges to $y\in \partial K_\beta$. Also, $x\neq y$ because if so, we would have that $x \in \partial K_\beta$ which means that $f(x) = \beta$ and $f(x) \leq \alpha$ with $\alpha < \beta$ and this contradicts our assumption that $f$ is a (continuous) function. So, we can assume that each subsequence converges to distinct points in their respective compact spaces. However, we also find that 
+	\[\lim_{k\to\infty} |x_{n_k} - y_{n_k}| = 0,\]
+because every subsequence of a convergent sequence converges to the same limit point. Yet, by the properties of convergent sequences, 
+\[\lim_{k\to\infty} |x_{n_k} - y_{n_k}| = |x - y| \neq 0\]
+which contradicts our assumption that there exists sequences in $K_\alpha$ and $\partial K_\beta$ whose difference converges to 0. 
+
+Therefore, $d(K_\alpha,\partial K_\beta) > 0$ for all $0 < \alpha < \beta < 1$. 
+
+
+\textbf{Solution:} (b)
+
+FINISH ME. Define a function that is a bunch of spikes that have a constant height and the width of each spike is equal to $1/n$ for all $n\in \N$ or something like this.\\
+
+\hrule
+
+\textbf{Notes:} So, this was a super super hard problem because the notation is kind of aweful. Yet, they are conveying a ``simple" idea. In the first problem, because the limit inferior of the function stays bounded below by 2 as $|x|$ approaches infinity, there are only ``finitely" many values of $x\in \R^m$ that map to values below 2. The choice of the word finite is weird because the real numbers are uncountable. Yet, we can visualize the idea as a bounded subset of real numbers that map to values less than 2 as we approach infinity. Still feels weird. You're tired.\\
+
+\hrule \vspace{2pts}
+\hrule
+
+\break
+
 \end{document}
