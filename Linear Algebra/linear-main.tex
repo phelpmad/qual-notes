@@ -48,7 +48,7 @@ $\lambda = \lambda_i = 0$ for all $i = 1,\dots n$. Otherwise, $\lambda$ is non z
  	\[ (\lambda - \lambda_1) \beta_1 + \cdots + (\lambda - \lambda_n) \beta_n = 0.\]
 Since $\beta$ is linearly independent, $\lambda = \lambda_1=\cdots = \lambda_n$. Thus, $T$ only has one eigenvalue such that $Tx = \lambda x$ for all $x\in V$ and writing the matrix representation of $T$ with respect to the arbitrary basis $\beta$ is 
 	\[ [T]_\beta = \begin{bmatrix} 
-				\lambda & 0 & 0 & \dots & 0\\
+				\lambda & 0  & 0  & \dots & 0 \\
 				0 & \lambda & 0 & \dots & 0\\
 				\vdots & \vdots & \vdots & \ddots & 0\\
 				0 & 0 & 0 & \dots & \lambda 
@@ -332,4 +332,76 @@ Therefore, $A = \lambda I_{n\times n}$ for some $\lambda \in \R$.\\
 \hrule
 
 
+\break
+
+\section{Determinants}
+
+\subsection{Problems}
+
+\begin{problem}{\#4, Spring 2022} Let $a$ and $b$ be $n\times 1$ column vectors with entries from a field $F$. 
+	\begin{enumerate}
+		\item[(a)] Verify the $n = 3$ case of the identity $\det{I + ab^t} = 1 + a^tb$.
+		\item[(b)] Suppose $A$ is an $n\times n$ nonsingular matrix. Assuming the identity in (a), prove that 
+				\[\det{A + ab^t} = (1+ b^t A^{-1} a )\det{A}.\]
+		\item[(c)] Suppose $M = (m_{ij})$ a an $n\times n$ matrix such that 
+				\[ m_{ij} = \begin{cases}
+							1 + d_i & \text{ if } i = j,\\
+							1 & \text{ if } i \neq j,
+						\end{cases}
+						\quad \text{ where } d_i \neq 0 \text{ for all } i.\]
+			Prove that 
+				\[\det{M} = \prod_{i=1}^n d_i \left( 1 + \sum_{i=1}^n \frac{1}{d_i} \right).\]
+		\end{enumerate}
+\end{problem}
+
+\textbf{Solution:} (a)
+
+USE CRAMER's RULE and everything cancels. If you have time, type it up. If not, just remember that for a three by three matrix you adjoin the first two columns of $A$ to the end of $A$ and multiple the diagonal entries from top to bottom then, starting at the entry in the first row second column and multiple these entries together, repeat with the last entry in the first column. Do the same but in reverse by multiplying diagonally from the bottom to the top. Add the things you multiplied downwards and subtract the things you multiplied upwards. This will be the determinant. 
+
+\textbf{Solution:} (b)
+
+We compute
+	\begin{align*}
+		\det{A + ab^t} & = \det{A + (AA^{-1}) ab^t} & [AA^{-1} = I]\\
+				      & = \det{A(I+A^{-1} ab^t)}\\
+				      & = \det{A}\det{I+ (A^{-1}a)b^t} & [\det{CD} = \det{C}\det{D}]\\
+				      & = \det{A}\det{\left(I+ (A^{-1}a)b^t\right)^t} & [\det{C^t} = \det{C}]\\
+				      & = \det{A}\det{I + b (A^{-1}a)^t}\\
+				      & = \left(1 + b^t(A^{-1} a)\right)\det{A}. & [\text{Apply part (a) with } ``a":= b, ``b":=A^{-1}a]
+	\end{align*}
+
+\textbf{Solution:} (c) 
+
+Let $a$ be the column vector with $a_i = 1$ for all $i=1,\dots, n$. Then, $aa^t$ is the $n\times n$ matrix with every entry equal to 1. Let $A$ be the diagonal matrix with entries $A_{ii} = d_i$ for all $i=1,\dots, n$. Because $d_i\neq0$, $A$ is an nonsingular matrix whose inverse, $A^{-1}$, is also diagonal with $(A^{-1})_{ii} = \frac{1}{d_i}$ for all $i=1,\dots, n$. Observe that we can write $M = A + aa^t$. By part (b) have that,
+	\[\det{M} = \det{A + aa^t} = (1 + a^t A^{-1} a)\det{A}.\]
+So, we compute $\det{A}$ and $a^t A^{-1} a$. Since $A$ is diagonal, the determinant is the product of the eigenvalues (which lie on the diagonal) meaning that,
+	 \[\det{A} = \prod_{i=1}^n A_{ii} = \prod_{i=1}^n d_i,\]
+and 
+	\[a^t A^{-1} a = \begin{bmatrix} 
+					1 & 1 & \cdots & 1
+				\end{bmatrix}
+				\begin{bmatrix}
+					\begin{array}{ccccc}
+ 						\nicefrac{1}{d_1} &    &  & \mathbf 0   &   \\
+ 						  & \nicefrac{1}{d_2} &   &   &   \\
+ 						  &   & \ddots &   &   \\
+ 						  &   &   & \ddots &   \\
+ 						  &  \mathbf 0 &  &   & \nicefrac{1}{d_n} 
+					\end{array}
+				\end{bmatrix}
+				\begin{bmatrix} 
+					1 \\ 1 \\ \vdots \\ 1
+				\end{bmatrix}
+				=
+				 \begin{bmatrix} 
+					1 & 1 & \cdots & 1
+				\end{bmatrix}
+				\begin{bmatrix} 
+					\nicefrac{1}{d_1} \\ \nicefrac{1}{d_1} \\ \vdots \\ \nicefrac{1}{d_1}
+				\end{bmatrix}
+				=
+				\sum_{i=1}^n \nicefrac{1}{d_i}.
+				\] 
+Altogether, the above computations result in 
+	\[\det{M} = \det{A + aa^t} = (1 + a^t A^{-1} a)\det{A} = \prod_{i=1}^n d_i \left( 1 + \sum_{i=1}^n \frac{1}{d_i} \right).\]
 \end{document}
