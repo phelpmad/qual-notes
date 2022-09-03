@@ -482,4 +482,77 @@ Keep it up.\\
 \hrule \vspace{2pt}
 \hrule
 
+\break
+
+\section{Rank Nullity Theorem}
+
+\subsection{Problems}
+
+\begin{problem}{\#2, Spring 2022}\;
+	\begin{enumerate}
+		\item[(a)] Let $V$ be a vector space of dimension 2 over field $F$. Let $T$ be a linear operator on $V$. Prove that the null space of $T$ is identical
+				to the image of $T$ if and only if their intersection contains a nonzero vector. 
+		\item[(b)] Let $V = \C$, and $F = \R$. Construct a linear operator $T$ on $V$ such that the null space of $T$ is identical to the image of $T$.
+				Justify your example.
+	\end{enumerate}
+\end{problem}
+
+
+\textbf{Solution:} (a)
+
+	$\implies$ By the rank-nullity theorem and our assumption that the null space of $T$ is identical to the image of $T$ 
+		\[ 2 \text{dim} V = \text{nullity} T + \text{rank} T = 2 \text{nullity} T\]
+		which implies that nullity$T = 1$. Thus, there exists a nonzero vector $x\in$null$T$ such that $Tx = 0$ and $x\in$range$T$. Therefore, there exists
+		a nonzero vector in their intersection.
+		
+	$\impliedby$ (By Contraposition) Suppose the null space of $T$ and the range of $T$ are different. Then by the rank-nullity theorem there are three cases
+		to consider. If nullity$T = 0$, then rank$T = 2$ which implies their intersection only contains the zero vector. Similarly, we conclude the same if 
+		nullity$T = 2$ and rank$T = 0$. If nullity$T =$rank$T = 1$, then there is a nonzero vector $x\in $null$T$ that is not in range$T$ such that $Tx=0$ and 
+		there exists a nonzero vector $y\in$range$T$ that is not in the null space. Since the dimension of $V$ is 2, their intersection only contains the zero
+		vector. 
+		
+	Therefore, he null space of $T$ is identical to the image of $T$ if and only if their intersection contains a nonzero vector. 
+	
+\textbf{Solution:} (b) 
+
+	Because $\C$ is the vector space over the real numbers, we need two real numbers to write a complex number of the form $x = a+ib$ for $a,b\in\R$ which
+	means that $\C$ is a two-dimensional vector space over the field $\R$. Define $T: \C \to \C$ by $Tx = \text{Im}(x)$ (the imaginary part of $x$). Since
+	 $\text{Im}(x)\in\R\subseteq \C$, $T$ is an operator. To see that $T$ is a linear operator, let $x = a_1 + ib_1 = (a_1, b_1)$, $y = a_2 + ib_2 = (a_2, b_2)$, and
+	  $\alpha, \beta\in\R$ and we compute 
+	  	\begin{align*}
+			T(\alpha x+ \beta y) & = \text{Im}(\alpha x+ \beta y)\\
+						       & = \text{Im}(\alpha a_1 + i(\alpha b_1) + \beta a_2 + i (\beta b_2))\\
+						       & = \text{Im}(\alpha a_1 + \beta a_2 + i(\alpha b_1 + \beta b_2))\\
+						       & = \alpha b_1 + \beta b_2\\
+						       & = \alpha \text{Im}(x) + \beta  \text{Im}(y)\\
+						       & = \alpha Tx + \beta Ty.
+		\end{align*}
+	Now, all complex numbers of the form $x = a$ will get mapped to zero which means that the set of all real numbers is the null space of $T$, but is also the
+	range of $T$ because the imaginary part of a complex number is real. Thus, we have constructed a linear operator on $\C$ over $\R$ such that the null space
+	is identical to the range.\\
+	
+\hrule
+
+\textbf{Notes:} Well, I think you should keep this because it doesn't really make sense. Or... maybe, its just that the notation is all over the place. You are trying to communicate the correct idea but I don't think that the notation is helping convey this. Come back later and read this and maybe your thoughts will be different. Here's an alternate proof of part (b):\\
+
+	Since $\C$ is a vector space over $\R$, for any $x\in \C$ we write $x = a+ ib = (a, b)$ (any complex number is given by the ordered pair $(a,b)$) for 
+	$a,b\in\R$, which means that the vector space of complex numbers over the field $\R$ is a two-dimensional vector space. Define $T:\C\to\C$ by
+	 $(a,b) \mapsto (b,0)$, meaning $T$ is the mapping that gives the imaginary part of a complex number. The null space of $T$ is the set of all pairs
+	  of real numbers of the form $(a,0)$ which is exactly the range of $T$. In other words, the null space and the image of $T$ is the one-dimensional space of 
+	  all real numbers which is a subset of $\C$. To see that $T$ is a linear operator, let $x = a_1 + ib_1 = (a_1, b_1)$, $y = a_2 + ib_2 = (a_2, b_2)$, and
+	  $\alpha, \beta\in\R$ and we compute 
+	  	\begin{align*}
+			T(\alpha x+ \beta y) & = \text{Im}(\alpha x+ \beta y)\\
+						       & = \text{Im}(\alpha a_1 + i(\alpha b_1) + \beta a_2 + i (\beta b_2))\\
+						       & = \text{Im}(\alpha a_1 + \beta a_2 + i(\alpha b_1 + \beta b_2))\\
+						       & = \alpha b_1 + \beta b_2\\
+						       & = \alpha \text{Im}(x) + \beta  \text{Im}(y)\\
+						       & = \alpha Tx + \beta Ty.
+		\end{align*}
+
+And with that. Goodnight.\\
+
+\hrule \vspace{2pts}
+\hrule
+
 \end{document}
