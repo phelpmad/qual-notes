@@ -404,4 +404,155 @@ and
 				\] 
 Altogether, the above computations result in 
 	\[\det{M} = \det{A + aa^t} = (1 + a^t A^{-1} a)\det{A} = \prod_{i=1}^n d_i \left( 1 + \sum_{i=1}^n \frac{1}{d_i} \right).\]
+	
+\hrule 
+
+\textbf{Notes:} This problem is really about looking at it and seeing how the parts can fit together. How you can use the parts to construct a way to solve the last part. Like Tyler keeps on telling me, these problems with multiple parts are really connected and I should think about how to use them to my advantage. This is getting better. \\
+
+Also, throughout thinking about this problem I drew pictures to help me visualize what in the hell these matrices are doing because on one side of things, they are matrices and on the other, they are numbers. So, I tried using row and column blocks with a matrix to see how I can use the equality in part (a) to help me see what I needed to do to show the equality in part (b). They really messed me up with using $a$ and $b$ because in the second part, the roles are switched... and of course, this makes it harder because its not staring you in the face on ``what to choose" to be ``clever" and demolish the test like the demagorgans. God, I love stranger things. Anyways, what did you learn? You learned that drawing pictures is helpful. You learned to rely on the things you knew and also, I always forget what to add and subtract in Cramer's rule. But, at the end of the day you know what you want. So, whatever pops out should be that, right? So, if you're getting a negative when you should be getting a positive, then you should probably reverse the roles. Also, your scratch work for part (b) was all over the place. Yet, one really good thing that you did is that you didn't completely scratch your idea when something didn't instantly work. Just like he says, try and figure out what when wrong and how you can fix the problem to find the solution. I was choosing the wrong $a$ and $b$ which led to working with $(A^{-1})^t$ which we know nothing about. So, you're going on the right track, but your using the wrong thing to get you there. Take a moment, think about what works and what doesn't then think about how you can fix these things to get where you want.\\
+
+Good job.\\
+
+\hrule\vspace{2pt}
+\hrule
+
+\break
+
+\section{Inner Product Spaces}
+
+\subsection{Orthogonal Projections} 
+
+\subsubsection{Problems}
+
+\begin{problem}{\#5, Fall 2020} Let $W$ be a subspace of a inner product space $(V, \langle \cdot, \cdot \rangle)$ and $P: V\to V$ be a linear transformation Prove that $P$ is an orthogonal projection onto $W$ if and only if $P$ is both idempotent and self-adjoint.
+
+Recall: $P$ is 
+	\begin{itemize}
+		\item \textit{idempotent} if $P^2 = P$;
+		\item \textit{self-adjoint} if $\forall x, y \in V \langle x, Py \rangle = \langle Px , y \rangle$;
+		\item \textit{orthogonal projection onto} $W$ if for any $x\in W$, $P(x) = x$ and for any $y \perp W$, $P(y) = 0$.
+	\end{itemize}
+\end{problem}
+
+
+\textbf{Solution:} $\implies$
+
+Since $P$ is an orthogonal projection, $P^2 = P$ by definition of a projection operator, meaning $P$ is idempotent. So, we will show that $P$ is also self-adjoint. Let $V = W \oplus W^\perp$ ($V$ is an inner product space with range$P=W$ and null$P = W^\perp$). Let $x,y\in V$ be arbitrary and then decompose the vectors as $x = x_1 + x_2$ and $y = y_1 + y_2$ where $x_1,y_1\in W$ and $x_2, y_2\in W^\perp$. We compute
+	\begin{align}
+		\langle Px, y\rangle & = \langle P(x_1+x_2), y_1 + y_2 \rangle \nonumber \\
+					      & = \langle P(x_1) + P(x_2), y_1 + y_2 \rangle \nonumber \\
+					      & = \langle x_1 + 0, P(y_1) + y_2 \rangle \nonumber \\
+					      & = \langle x_1, P(y_1) \rangle + \langle x_1, y_2 \rangle \nonumber \\
+					      & = \langle x_1, P(y_1) \rangle \label{eqn:fall2020-5-orthogonal} \\ 
+					      & = \langle x_1, P(y_1) \rangle + \langle x_2, 0\rangle + \langle 0, P(y_2) \rangle \label{eqn:fall2020-5-add-zero} \\
+					      & = \langle x_1 + x_2, P(y_1) + P(y_2) \rangle \nonumber \\
+					      & = \langle x, Py \rangle \nonumber
+	\end{align}
+where we have used the properties of inner products and specifically on line (\ref{eqn:fall2020-5-orthogonal}) we used that $x_1\in W$ and $y_2\in W^\perp$ which implies that $\langle x_1, y_2 \rangle$ equals zero, and on line (\ref{eqn:fall2020-5-add-zero}) we use the property that $\langle 0, x\rangle = \langle x , 0 \rangle = 0$ with $P(y) = 0$ for $y\in W^\perp$. 
+
+\textbf{Solution:} $\impliedby$ (By Contraposition)
+
+Suppose $P$ is not an orthogonal projection and let range$P = W$. Then there exists some $y\in V$ that is not orthogonal to $W$ with $Py = 0$. Since 0 is orthogonal to every vector, $y\neq 0$. Choose any $x\in W$ with $x\not\in\text{null}P$. Then $Pw = w \neq 0$. We compute, 
+\[ 0 = \langle 0, x\rangle = \langle Py, x\rangle \quad \text{ and } \quad \langle y, Px \rangle > 0 \]
+because $y,Px\neq 0$. Thus $\langle Py, x\rangle \neq \langle y, Px \rangle $ which shows that $P$ is not self-adjoint.
+
+Also, if $P$ is not a projection, then $P^2 \neq P$ because there exists some $w\in \text{range} P = W$ such that $Pw=v$ for $v\neq w$ and so, $P^2(w) \neq P(v)$. That is, if $P$ is not a projection then $P$ is not idempotent. 
+
+Therefore, by contraposition if $P$ is idempotent and self-adjoint then $P$ is an orthogonal projection.\\
+
+\hrule
+
+\textbf{Notes:} Well... yeah. You did work too hard in the beginning of this problem. But you chose it because you needed to work on this particular skill. The trick was to add by zero and then use proof by contraposition instead of a direct proof. Also, drawing pictures will help you out. Understanding what a projection is will also help because projections are defined to be idempotent. So, use this. Also, be able to prove it if you need to. For example, let $x = x_1 + x_2$ with $x_1\in W$ and $x_2\in W^\perp$. Then, $P(x_1) = x_1$ and $P(x_2) = 0$ and
+	\begin{align*}
+		Px & = P(x_1 + x_2) \\
+		     & = P(x_1) + P(x_2)\\
+		     & = P(P(x_1)) + 0\\
+		     & = P^2(x_1) + P(0)\\
+		     & = P^2(x_1) + P(P(x_2))\\
+		     & = P^2(x_1) + P^2(x_2)\\
+		     & = P^2(x_1+x_2)\\
+		     & = P^2(x)
+	\end{align*}
+for all $x\in V = W\oplus W^\perp$.\\
+
+Note to self, try and work out what these questions mean in words and try and draw picrtures of what happens. Then, if that doesn't go anywhere do symbol mashing but symbol mashing normally gets you into trouble.\\
+
+Keep it up.\\
+
+\hrule \vspace{2pt}
+\hrule
+
+\break
+
+\section{Rank Nullity Theorem}
+
+\subsection{Problems}
+
+\begin{problem}{\#2, Spring 2022}\;
+	\begin{enumerate}
+		\item[(a)] Let $V$ be a vector space of dimension 2 over field $F$. Let $T$ be a linear operator on $V$. Prove that the null space of $T$ is identical
+				to the image of $T$ if and only if their intersection contains a nonzero vector. 
+		\item[(b)] Let $V = \C$, and $F = \R$. Construct a linear operator $T$ on $V$ such that the null space of $T$ is identical to the image of $T$.
+				Justify your example.
+	\end{enumerate}
+\end{problem}
+
+
+\textbf{Solution:} (a)
+
+	$\implies$ By the rank-nullity theorem and our assumption that the null space of $T$ is identical to the image of $T$ 
+		\[ 2 \text{dim} V = \text{nullity} T + \text{rank} T = 2 \text{nullity} T\]
+		which implies that nullity$T = 1$. Thus, there exists a nonzero vector $x\in$null$T$ such that $Tx = 0$ and $x\in$range$T$. Therefore, there exists
+		a nonzero vector in their intersection.
+		
+	$\impliedby$ (By Contraposition) Suppose the null space of $T$ and the range of $T$ are different. Then by the rank-nullity theorem there are three cases
+		to consider. If nullity$T = 0$, then rank$T = 2$ which implies their intersection only contains the zero vector. Similarly, we conclude the same if 
+		nullity$T = 2$ and rank$T = 0$. If nullity$T =$rank$T = 1$, then there is a nonzero vector $x\in $null$T$ that is not in range$T$ such that $Tx=0$ and 
+		there exists a nonzero vector $y\in$range$T$ that is not in the null space. Since the dimension of $V$ is 2, their intersection only contains the zero
+		vector. 
+		
+	Therefore, he null space of $T$ is identical to the image of $T$ if and only if their intersection contains a nonzero vector. 
+	
+\textbf{Solution:} (b) 
+
+	Because $\C$ is the vector space over the real numbers, we need two real numbers to write a complex number of the form $x = a+ib$ for $a,b\in\R$ which
+	means that $\C$ is a two-dimensional vector space over the field $\R$. Define $T: \C \to \C$ by $Tx = \text{Im}(x)$ (the imaginary part of $x$). Since
+	 $\text{Im}(x)\in\R\subseteq \C$, $T$ is an operator. To see that $T$ is a linear operator, let $x = a_1 + ib_1 = (a_1, b_1)$, $y = a_2 + ib_2 = (a_2, b_2)$, and
+	  $\alpha, \beta\in\R$ and we compute 
+	  	\begin{align*}
+			T(\alpha x+ \beta y) & = \text{Im}(\alpha x+ \beta y)\\
+						       & = \text{Im}(\alpha a_1 + i(\alpha b_1) + \beta a_2 + i (\beta b_2))\\
+						       & = \text{Im}(\alpha a_1 + \beta a_2 + i(\alpha b_1 + \beta b_2))\\
+						       & = \alpha b_1 + \beta b_2\\
+						       & = \alpha \text{Im}(x) + \beta  \text{Im}(y)\\
+						       & = \alpha Tx + \beta Ty.
+		\end{align*}
+	Now, all complex numbers of the form $x = a$ will get mapped to zero which means that the set of all real numbers is the null space of $T$, but is also the
+	range of $T$ because the imaginary part of a complex number is real. Thus, we have constructed a linear operator on $\C$ over $\R$ such that the null space
+	is identical to the range.\\
+	
+\hrule
+
+\textbf{Notes:} Well, I think you should keep this because it doesn't really make sense. Or... maybe, its just that the notation is all over the place. You are trying to communicate the correct idea but I don't think that the notation is helping convey this. Come back later and read this and maybe your thoughts will be different. Here's an alternate proof of part (b):\\
+
+	Since $\C$ is a vector space over $\R$, for any $x\in \C$ we write $x = a+ ib = (a, b)$ (any complex number is given by the ordered pair $(a,b)$) for 
+	$a,b\in\R$, which means that the vector space of complex numbers over the field $\R$ is a two-dimensional vector space. Define $T:\C\to\C$ by
+	 $(a,b) \mapsto (b,0)$, meaning $T$ is the mapping that gives the imaginary part of a complex number. The null space of $T$ is the set of all pairs
+	  of real numbers of the form $(a,0)$ which is exactly the range of $T$. In other words, the null space and the image of $T$ is the one-dimensional space of 
+	  all real numbers which is a subset of $\C$. To see that $T$ is a linear operator, let $x = a_1 + ib_1 = (a_1, b_1)$, $y = a_2 + ib_2 = (a_2, b_2)$, and
+	  $\alpha, \beta\in\R$ and we compute 
+	  	\begin{align*}
+			T(\alpha x+ \beta y) & = \text{Im}(\alpha x+ \beta y)\\
+						       & = \text{Im}(\alpha a_1 + i(\alpha b_1) + \beta a_2 + i (\beta b_2))\\
+						       & = \text{Im}(\alpha a_1 + \beta a_2 + i(\alpha b_1 + \beta b_2))\\
+						       & = \alpha b_1 + \beta b_2\\
+						       & = \alpha \text{Im}(x) + \beta  \text{Im}(y)\\
+						       & = \alpha Tx + \beta Ty.
+		\end{align*}
+
+And with that. Goodnight.\\
+
+\hrule \vspace{2pts}
+\hrule
+
 \end{document}
