@@ -14,6 +14,7 @@
 % page edits:
 \pdfoutput=1
 \usepackage[margin=3cm]{geometry}
+\usepackage{strikeout}
 
 % page layout:
 \setlength{\marginparwidth}{3cm}
@@ -105,5 +106,22 @@
 % custom comments for editing purposes
 \selectcolormodel{HTML}
 \definecolor{myBlue}{HTML}{7099c2}
+\definecolor{myForestGreenMid}{HTML}{a9c99c}
+\definecolor{myBurntOrange}{HTML}{9c4634}
 \newcommand{\mphc}[1]{{\color{myBlue} #1}}
+\newcommand{\qualrevise}[2]{{\color{myBurntOrange} \textbf{Old Solution #1:} #2}}
+\newcommand{\mphswap}[2]{\begin{strikeout}{#1}\end{strikeout}\;\textcolor{magenta}{#2}}
+
+
+% section numbering
+\usepackage{titlesec}% http://ctan.org/pkg/titlesec
+\titleformat{\section}%
+  [hang]% <shape>
+  {\normalfont\bfseries\Large}% <format>
+  {}% <label>
+  {0pt}% <sep>
+  {}% <before code>
+\renewcommand{\thesection}{}% Remove section references...
+\renewcommand{\thesubsection}{\arabic{subsection}}%... from subsections
+
 

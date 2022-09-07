@@ -1,0 +1,26 @@
+\ProvidesPackage{strikeout}
+
+%The following code was copied from https://tex.stackexchange.com/questions/508396/strikeout-a-paragraph-containing-text-and-an-equation-environment
+% By the author Marjin who was inspired by Ulrike Fischer. 
+% Some updates made by the current author Madison Phelps, but everything is basically just a copy and paste.
+
+\usepackage[most]{tcolorbox}
+\usetikzlibrary{patterns}
+
+\pgfdeclarepatternformonly{mystrikeout}{\pgfqpoint{-1pt}{-1pt}}{\pgfqpoint{11pt}{11pt}}{\pgfqpoint{10pt}{10pt}}%
+{
+  \pgfsetlinewidth{0.2pt}
+  \pgfpathmoveto{\pgfqpoint{0pt}{0pt}}
+  \pgfpathlineto{\pgfqpoint{10.1pt}{10.1pt}}
+  \pgfusepath{stroke}
+}
+\newtcolorbox{strikeout}{breakable,
+ enhanced jigsaw,
+ opacityback=0,
+ parbox=false,
+ boxrule=0mm,
+ top=0mm,bottom=0pt,left=0pt,right=0pt,
+ boxsep=0pt,
+ frame hidden,
+ finish={\fill[pattern=mystrikeout] (frame.north west) rectangle (frame.south east);}
+}
