@@ -1,10 +1,14 @@
 \documentclass{article}
 
 \usepackage{preamble}
+\usepackage{strikeout}
+
 
 \title{Analysis Qual Solutions}
 \author{Madison Phelps \thanks{Oregon State University, phelpmad@oregonstate.edu}}
 \date{\today}
+
+\usepackage{cancel}
 
 \begin{document}
 
@@ -19,8 +23,6 @@
 \thispagestyle{empty}
 
 \break
-
-
 
 \section{Contraction Mapping Theorem}
 
@@ -37,7 +39,11 @@
 
 \subsection{Problems}
 
-\begin{problem}{Fall 2020 \# 1} Let 
+\subsubsection{Fall 2020 \#1}
+
+\hrule 
+
+Let 
 	\[F(x) = \frac{1}{2}\left(x + \frac{a}{x}\right)\]
 		for all $x>0$, where $a>0$ is constant. 
 		This problem is concerned with sequences $\{x_n\}_{n=0}^\infty$ 
@@ -48,55 +54,138 @@
 		\item[(b)] Prove that for every $x_0\in I$, the sequence $\{x_n\}_{n=0}^\infty$ converges to a limit 
 			that is independent of the choice of $x_0$. What is this limit?
 	\end{enumerate}
-\end{problem}
-
+\hrule 
 
 \textbf{Solution:} (a)
 
-Define $I = [\sqrt{a}, b]$, where $a>0$ is given and choose $b\in\R$ such that $b>\sqrt{a}>0$. To show that $F(I)\subseteq I$, we first compute the solution to $F'(x) = \frac{1}{2}\left(1 - \frac{a}{x^2}\right) = 0$ to find that $F$ has a minimum at $x = \sqrt{a}$ (since $x>0$). Also, observe $F$ has a fixed point at $x = \sqrt{a}$ because
-	\[F(\sqrt{a}) = \frac{1}{2}\left(\sqrt{a} + \frac{a}{\sqrt{a}}\right) = \sqrt{a}.\]
-	
-Thus, $F$ is bounded below by $x = \sqrt{a}$. Since $0<\sqrt{a}<b$, we use the two inequalities $\frac{a}{b}< \sqrt{a}$ and $\sqrt{a}+b < 2b$ to conclude that
-	\[F(b) = \frac{1}{2}\left(b + \frac{a}{b}\right) < \frac{1}{2}(\sqrt{a} + b) < \frac{1}{2}(2b) = b. \]
-That is, for any $b\in\R$ with $\sqrt{a}<b$, $F$ is bounded above by $b$. Therefore, for all $x\in I$, $\sqrt{a} \leq F(x) < b$, and so, $F(I) \subseteq I$.
-
+We wish to construct a closed interval $I$ of positive finite length such that $F$ maps $I$ onto $I$. Observe that $F$ has a fixed point at $x = \sqrt{a} > 0$ because 
+	\[F(\sqrt{a}) = \frac{1}{2}\left(\sqrt{a} + \frac{a}{\sqrt{a}}\right) = \sqrt{a},\]
+which is found by computing the solution to the equation $F'(x) = \frac{1}{2}\left(1 - \frac{a}{x^2}\right) = 0$ and and solving for $x>0$. Suppose $x\in\R$ such that $0 < x \leq \sqrt{a}$. Then by manipulating the inequality $x \leq \sqrt{a}$ we obtain 
+	\begin{equation}\label{ineq:fall2020-a-lower}
+		 x = \frac{1}{2} (2x) \leq  \frac{x + \sqrt{a}}{2} \leq \frac{1}{2}\left(x + \frac{a}{x}\right) = F(x).
+	\end{equation}
+Similarly, for any $x\in\R$ with $\sqrt{a} < x$ we obtain,
+	\begin{equation}\label{ineq:fall2020-a-upper}
+		 F(x) = \frac{1}{2}\left(x + \frac{a}{x}\right) < \frac{x + \sqrt{a}}{2} < \frac{1}{2} (2x) = x
+	\end{equation}
+That is, choose some $b\in\R$ such that $\sqrt{a} < b$ and by the inequalities in (\ref{ineq:fall2020-a-lower}) and (\ref{ineq:fall2020-a-upper}), for any $x\in\R$ with $\sqrt{a}\leq x < b$,
+	\[\sqrt{a} = F(\sqrt{a}) \leq F(x) < F(b) < b.\]
+Define $I$ to be the closed interval $[\sqrt{a}, b]$ with positive finite length (because $\sqrt{a} < b$). The above statement allows us to conclude that $F(I) \subset I$, i.e., $F$ maps $I$ onto $I$.
 
 \textbf{Solution:} (b) 
 
-To prove the statement, we will show that $F$ is a contraction mapping on $I$ with constant $\alpha = \frac{1}{2} \in [0, 1)$ and apply the Banach fixed point theorem which states:
+Choose $b\in\R$ with $\sqrt{a} < b$ and consider the mapping $F: I\to I$ where $I = [\sqrt{a}, b]$. We want to show that $F$ is contraction mapping on $I$ and apply the Banach fixed point theorem which states:
+
+If $f: X\to X$ is a mapping on a complete metric space $X$ such that there exists $\alpha \in [0,1)$ such that 
+\[|f(x) - f(y)|\leq \alpha |x-y|\]
+for all $x,y,\in X$, then $f$ has a unique fixed point. Moreover, for any $x_0\in X$, the sequence of functional iterates $x_0, f(x_0), f(f(x_0)),\dots$ converges to the fixed point in $X$. 
+
+For any distinct $x,y\in I$, we compute 
+	\begin{align*}
+		|F(x) - F(y)| & =\frac{1}{2} \left|x +\frac{a}{x} - \left(y +\frac{a}{y}\right)\right|\\
+				  & = \frac{|x-y|}{2}\left|1 - \frac{a}{xy}\right|.
+	\end{align*}
+So, in order for $F$ to be a contraction mapping we must show that 
+	\begin{equation}\label{eqn:fall2020-contraction}
+		\left|1 - \frac{a}{xy}\right| < 1 \text{ for all } x,y\in I.
+	\end{equation}
+Suppose $x = y = \sqrt{a}$, then $0 = \left|1 - \frac{a}{a} \right| < 1$. Conversely, if $x = y = b$, then $\sqrt{a} < b$ implies that $\frac{a}{b^2} < 1$ and so, $0 = \left|1 - \frac{a}{b^2} \right| < 1$. Lastly, let $x,y\in I$ be distinct and such that $\sqrt{a} < x,y < b$. Then, 
+	\begin{equation}\label{eqn:fall2020-inequality}
+		\frac{1}{a} > \frac{1}{xy} \;\; \text{ and } \;\; \frac{1}{b^2} < \frac{1}{xy}
+	\end{equation}
+imply that 
+\[ 0 \leq \left|1 - \frac{a}{a}\right| < \left|1 - \frac{a}{xy}\right|  \leq \left|1 - \frac{a}{b^2}\right| < 1 \]
+for all $x,y\in I$. Using inequality (\ref{eqn:fall2020-contraction}) for any distinct $x,y\in I$
+	\[ |F(x) - F(y)| = \frac{|x-y|}{2}\left|1 - \frac{a}{xy}\right| < \frac{1}{2}|x-y|.\]
+Since $I\subseteq\R$ is a closed and bounded set in $\R$, $I$ is complete and because $F$ is a contraction mapping (from above and by part (a)) with contraction constant $\alpha = {1}{2}$, the Banach fixed point theorem states that: (1) $F$ has a unique fixed point, and (2) for any $x_0\in I$ the sequence $\{x_n\}_{n = 0}^\infty$ converges to the fixed point and is independent of the choice of $x_0$.
+
+\break 
+
+\subsubsection*{Notes: Fall 2020 \#1}
+
+\hrule 
+
+\textbf{Notes:} The above question is regarding the Banach fixed point theorem and the consequence that the sequence of functional iterates converges to the fixed point no matter what point in the complete space you choose. However, if the space is not complete and you find a complete space within the set for which $f$ is defined in, eventually the sequence will be inside of the complete space. Of course, you need to show that $f$ is a contraction mapping. But, only finitely many terms will be outside of the complete set. Then, there will be a point where the Banach fixed point theorem kicks in and we can guarantee that the sequence of functional iterates converges to to the unique fixed point of $f$.\\
+
+Another thing with this problem is that it utilizes working with inequalities and boils down to manipulating the inequality $b > \sqrt{a}$ in many different ways for some fixed $a>0$.\\ 
+
+You learned a lot in this problem.\\
+
+\hrule\vspace{2pt}
+\hrule
+
+\break 
+
+\subsubsection*{Revision: Fall 2020 \#1} 
+
+\textbf{Part (a) Revision:} (Notes in magenta)\\
+
+There are some issues with the above old solution that need revision: 
+
+\mphswap{Define $I = [\sqrt{a}, b]$, where $a>0$ is given and choose $b\in\R$ such that $b>\sqrt{a}>0$.}{Yes, but move to end of proof.}
+
+\mphswap{To show that $F(I)\subseteq I$, we first compute the solution to $F'(x) = \frac{1}{2}\left(1 - \frac{a}{x^2}\right) = 0$ to find that $F$ has a minimum at $x = \sqrt{a}$ (since $x>0$). Also, observe $F$ has a fixed point at $x = \sqrt{a}$ because
+	\[F(\sqrt{a}) = \frac{1}{2}\left(\sqrt{a} + \frac{a}{\sqrt{a}}\right) = \sqrt{a}.\]
+}{%
+Change to just include that that $F$ has a fixed point at $x = \sqrt{a}$ because
+	\[F(\sqrt{a}) = \frac{1}{2}\left(\sqrt{a} + \frac{a}{\sqrt{a}}\right) = \sqrt{a}.\]
+Then take any $x\in \R$ with $0 < x\leq \sqrt{a}$ and manipulate the inequalities as 
+	\begin{align*}
+		x \leq \sqrt{a} & & x \leq \sqrt{a}\\
+		\sqrt{a} x \leq a & & 2x \leq \sqrt{a} + x\\
+		\sqrt{a} \leq \nicefrac{a}{x} & & \\
+		x + \sqrt{a} \leq x +\nicefrac{a}{x}
+	\end{align*}
+and conclude with 
+	\[ x \leq \frac{x + \sqrt{a}}{2} \leq F(x) = \frac{1}{2}\left(x + \frac{a}{x}\right)\]
+}
+
+\mphswap{Thus, $F$ is bounded below by $x = \sqrt{a}$.}{
+Yes, but you don't need this and it makes things more confusing.}
+\mphswap{Since $0<\sqrt{a}<b$, we use the two inequalities $\frac{a}{b}< \sqrt{a}$ and $\sqrt{a}+b < 2b$ to conclude that
+	\[F(b) = \frac{1}{2}\left(b + \frac{a}{b}\right) < \frac{1}{2}(\sqrt{a} + b) < \frac{1}{2}(2b) = b. \]
+That is, for any $b\in\R$ with $\sqrt{a}<b$, $F$ is bounded above by $b$. Therefore, for all $x\in I$, $\sqrt{a} \leq F(x) < b$, and so, $F(I) \subseteq I$.
+}{%
+Replace $b$ with $x$ to show that for any $x\in \R$ with $\sqrt{a} < x$, then $F(x) < x$. Then, choose the bounds as you did in the original write up. Say the same conclusion.
+}\\
+
+\hrule 
+
+\textbf{Part (b) Revise Flow:}
+
+\mphswap{To prove the statement, we will show that $F$ is a contraction mapping on $I$ with constant $\alpha = \frac{1}{2} \in [0, 1)$ and apply the Banach fixed point theorem which states:
 
 If $f: X\to X$ is a mapping on a complete metric space $X$ such that there exists $\alpha \in [0,1)$ such that 
 \[|f(x) - f(y)|\leq \alpha |x-y|\]
 for all $x,y,\in X$, then $f$ has a unique fixed point. Moreover, for any $x_0\in X$, the sequence of functional iterates $x_0, f(x_0), f(f(x_0)),\dots$ converges to the fixed point in $X$. 
 
 Observe that in order for $F$ to be a contraction mapping we must show that 
-	\begin{equation}\label{eqn:fall2020-contraction}
+	\begin{equation}
 		\left|1 - \frac{a}{xy}\right| < 1 \text{ for all } x,y\in I.
 	\end{equation}
 Suppose $x = y = \sqrt{a}$, then $0 = \left|1 - \frac{a}{a} \right| < 1$. Conversely, if $x = y = b$, then $b > \sqrt{a}$ implies that $\frac{a}{b^2} < 1$ and so, $0 = \left|1 - \frac{a}{b^2} \right| < 1$. Lastly, let $x,y\in I$ be distinct and such that $\sqrt{a} < x,y < b$s. Then, 
-	\begin{equation}\label{eqn:fall2020-inequality}
+	\begin{equation*}
 		\frac{1}{a} > \frac{1}{xy} \;\; \text{ and } \;\; \frac{1}{b^2} < \frac{1}{xy}
-	\end{equation}
+	\end{equation*}
 imply that 
 \[ 0 \leq \left|1 - \frac{a}{a}\right| < \left|1 - \frac{a}{xy}\right|  \leq \left|1 - \frac{a}{b^2}\right| < 1 \]
-for all $x,y\in I$. Using inequality (\ref{eqn:fall2020-contraction}) for any $x,y\in I$
-	\begin{align}
+for all $x,y\in I$. Using inequality (??) for any $x,y\in I$
+	\begin{align*}
 		|F(x) - F(y)| & =\frac{1}{2} \left|x +\frac{a}{x} - \left(y +\frac{a}{y}\right)\right|\\
 				  & = \frac{|x-y|}{2}\left|1 - \frac{a}{xy}\right|\\
 				  & < \frac{1}{2}|x-y|.
-	\end{align}
+	\end{align*}
 Since $I\subseteq\R$ is a closed and bounded set in $\R$, $I$ is complete and because $F$ is a contraction mapping (from above and by part (a)) with contraction constant $\alpha = {1}{2}$, the Banach fixed point theorem states that: (1) $F$ has a unique fixed point, and (2) for any $x_0\in I$ the sequence $\{x_n\}_{n = 0}^\infty$ converges to the fixed point and is independent of the choice of $x_0$.\\ 
-
-\hrule 
-
-\textbf{Notes:} The above question is regarding the Banach fixed point theorem and the consequence that the sequence of functional iterates converges to the fixed point no matter what point in the complete space you choose. However, if the space is not complete and you find a complete space within the set for which $f$ is defined in, eventually the sequence will be inside of the complete space. Of course, you need to show that $f$ is a contraction mapping. But, only finitely many terms will be outside of the complete set. Then, there will be a point where the Banach fixed point theorem kicks in and we can guarantee that the sequence of functional iterates converges to to the unique fixed point of $f$. 
-
-Another thing with this problem is that it utilizes working with inequalities and boils down to manipulating the inequality $b > \sqrt{a}$ in many different ways for some fixed $a>0$.\\ 
+}{
+The main issue is that the flow should start with the calculation of why we care about the inequality. Also, should state that $I$ is taken from part (a) to be fixed. And the biggest thing is that STICK WITH THE INEQUALITY OF LESS THAN AND WRITE THINGS FROM SMALLEST TO BIGGEST. It will pay off.
+}\\
 
 \hrule \vspace{2pt}
 \hrule 
 
 \break 
+
+\subsubsection{Jordan Week 1 \#3}
 
 \begin{problem}{Jordan Qual Prep Week 1 (\& 7), \# 3} Let $f:\R \to \R$ be a Lipshitz continuous function. That is, 
 	\[\frac{ |f(x)- f(y)| }{|x-y|} \leq L \quad \text{ for some constant $L$ and for all $x\neq y$.}\]
@@ -136,6 +225,10 @@ Because $x$ and $y$ are distinct, $\frac{1}{(1+x)(1+y)}<1$ for all $x,y\in X_t$.
 				& < \frac{1}{2}|x-y|
 	\end{align}
 which shows that $f$ is a contraction mapping on a complete space with constant $\frac{1}{2}\in[0,1)$. Therefore, by Banach fixed point theorem by choosing $t = 0$, we can conclude that the sequence defined by $f(x_n) = x_{n+1} = \frac{1}{2(1+x_n)}$ with $x_0 = 0 \in X_t$ converges.\\
+
+\break
+
+\subsubsection*{Notes: Jordan Week 1 \#3}
 
 \hrule 
 
