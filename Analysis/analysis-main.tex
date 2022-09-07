@@ -507,9 +507,77 @@ FINISH ME. Define a function that is a bunch of spikes that have a constant heig
 
 \textbf{Notes:} So, this was a super super hard problem because the notation is kind of aweful. Yet, they are conveying a ``simple" idea. In the first problem, because the limit inferior of the function stays bounded below by 2 as $|x|$ approaches infinity, there are only ``finitely" many values of $x\in \R^m$ that map to values below 2. The choice of the word finite is weird because the real numbers are uncountable. Yet, we can visualize the idea as a bounded subset of real numbers that map to values less than 2 as we approach infinity. Still feels weird. You're tired.\\
 
-\hrule \vspace{2pts}
+\hrule \vspace{2pt}
 \hrule
 
 \break
 
+
+\section{Continuity and Limits}
+
+\subsection{Problems}
+
+\subsubsection{Spring 2022 \#2}
+
+\begin{problem}{\#2, Spring 2022} INCLUDE PROBLEM STATEMENT
+\end{problem}
+
+
+\textbf{Solution:} (a) 
+
+Let $\varepsilon > 0$ be given and let $f\in C[0,1]$ be arbitrary. 
+
+Since $f$ is continuous on a compact set, $f$ is uniformly continuous, and there exists $\delta > 0 $ such that for any $x,y\in [0,1]$ with $|x -y| < \delta$, $|f(x) - f(y)| < \varepsilon$. Choose $n\in \N$ by the Archimedean property such that $\nicefrac{1}{n} <\delta$ and define the intervals 
+	\[ E_j = \left[\frac{j-1}{n}, \frac{j}{n}\right) \text{ for all } j\in \{1, \dots, n-1\} \text{ and } E_n = \left[ \frac{n-1}{n}, 1 \right].\]
+Observe that $\bigcup_{j=1}^n E_j = [0,1]$ and for any $k\in \{1, \dots, n\}$ with $k\neq j$, $E_k \cap E_j = \emptyset$, i.e., the intervals $E_j$ are pairwise disjoint. Define $c_j = f\left(\frac{j-1}{n}\right)\in\R$ for $j \in \{1, \dots, n\}$. Then, $\phi:[0,1] \to \R$ is a step function with
+	\[ \phi(x) = \sum_{j=1}^n c_j I_j(x)\]
+where $I_j(x)$ is the characteristic function on $E_j$. 
+
+Let $x\in [0,1]$ be arbitrary. Since there are finitely many intervals, there exists some $j\in\{1, \dots, n\}$ such that $x\in E_j$. Also, observe that $ y = \frac{j-1}{n} \in E_j$ and $|x-y| < \frac{1}{n} < \delta$. Using the (uniform) continuity of $f$ on $[0,1]$, it follows that 
+	\[ |f(x) - c_j| = \left|f(x) - f\left(\frac{j-1}{n}\right)\right| = | f(x) - f(y) |  < \varepsilon. \]
+Because $x\in [0,1]$ was arbitrary, the maximum over all $x\in [0,1]$ will also be less that $\varepsilon$ by construction of our step function. Therefore, for every $\varepsilon > 0$ and every $f\in C[0,1]$, there exists a step function $\phi(x)$ such that 
+	\[ \max_{0\leq x\leq 1} \left| f(x) - \phi(x) \right| < \varepsilon.\]
+
+\textbf{Solution:} (b)
+
+Let $\phi(x)$ be an arbitrary step function. We compute, 
+	\begin{align*}
+		\left| \int_0^1 \phi(x) \cos(nx) dx \right| & = \left| \int_0^1 \sum_{j=1}^n c_j I_j(x) \cos(nx) dx \right| \\
+									  & = \left| \int0^1 c_1 I_1(x) \cos(nx) dx + \cdots + \int_0^1 c_n I_n(x) \cos(nx) dx \right|\\
+									  & = \left| \int_{E_1} c_1 \cos(nx) dx  + \cdots + \int_{E_n} c_n \cos(nx) dx \right|\\
+									  & = \left| c_1 \frac{\sin(nx)}{n} \bigg\rvert_{E_1} + 
+									  		\cdots + c_n \frac{\sin(nx)}{n} \bigg\rvert_{E_n} \right|\\
+	\end{align*}
+where the last two lines come from the fact that the intervals $E_j$ are pairwise disjoint. Now, consider some $j\in \{1, \dots, n\}$ and let $a_j$ and $b_j$ be arbitrary points in $E_j$, and $0 \leq a_j < b_j \leq 1$. Observe that by the triangle inequality and $|\sin(y)| \leq 1$ for all $y\in\R$, we have that 
+	\[ \left| c_j \left( \frac{\sin(b_j n)}{n} - \frac{\sin(a_j n)}{n}\right)\right| \leq |c_j| \left( \frac{\big|\sin(b_j n)\big|}{n} - \frac{\big|\sin(a_j n)\big|}{n}\right) \leq \frac{2|c_j|}{n}.\]
+Define $C = \sum_{j = 1}^n 2|c_j|$, then 
+		\[ 0 \leq \left| \int_0^1 \phi(x) \cos(nx) dx \right| 
+			= \left| c_1 \frac{\sin(nx)}{n} \bigg\rvert_{E_1} + \cdots + c_n \frac{\sin(nx)}{n} \bigg\rvert_{E_n} \right| 
+			\leq \frac{C}{n} \]
+and as $n\to\infty$, $\frac{C}{n}\to \infty$ and so, 
+	\[ \lim_{n\to \infty} \int_0^1 \phi(x) \cos(nx) dx = 0.\]
+	
+\textbf{Solution:} (c)
+
+Let $\varepsilon>0$ be given and let $f\in C[0,1]$ be arbitrary. By part (a) there exists a step function $\phi$ on $[0,1]$ such that $\max_{0\leq x\leq 1} |f(x) - \phi(x)| < \varepsilon$. We compute, 
+	\begin{align*} 
+		\int_0^1 f(x) \cos(nx) dx & =  \int_0^1 (f(x) - \phi(x) + \phi(x)) \cos(nx) dx \\
+								      & =   \int_0^1 (f(x) - \phi(x))\cos(nx) dx + \int_0^1\phi(x) \cos(nx) dx\\
+								      & \leq \int_0^1 \max_{0\leq x\leq 1} |f(x) - \phi(x)| \cos(nx) dx + \int_0^1\phi(x) \cos(nx) dx\\
+								      & < \varepsilon \int_0^1 \cos(nx) dx +  \int_0^1\phi(x) \cos(nx) dx\\
+								      & = \varepsilon \frac{\sin(n)}{n} + \int_0^1 \phi(x) \cos(nx) dx\\
+								      & \leq \frac{\varepsilon}{n} + + \int_0^1 \phi(x) \cos(nx) dx\\
+	\end{align*}
+and observe that
+	\[ 0 \leq \left| \int_0^1 f(x) \cos(nx) dx \right| \leq \frac{\varepsilon}{n} + \left | \int_0^1 \phi(x) \cos(nx) dx \right|.\]
+Then, by taking the limit as $n\to \infty$ and applying the result from part (b) (and because $\nicefrac{1}{n} \to 0$ as $n\to \infty$) we have that 
+	\[ 0 \leq \lim_{n\to\infty} \left| \int_0^1 f(x) \cos(nx) dx \right| \leq 0. \]
+Therefore, $\lim_{n\to\infty} \int_0^1 f(x) \cos(nx) dx = 0$ for every $f\in C[0,1]$.	\\
+
+\hrule 
+
+\textbf{Notes:} This one is hard.\\
+
+\hrule \vspace{2pt}
+\hrule 		    
 \end{document}
