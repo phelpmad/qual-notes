@@ -484,6 +484,100 @@ Keep it up.\\
 
 \break
 
+
+\subsection{Positive Definite and Positive Semi-Definite}
+
+\subsubsection{Notes: Real Symmetric Matrices}
+
+If a matrix is real symmetric then the matrix is self adjoint and if $V$ is an inner product space then
+	\[ \langle Ax, y \rangle = \langle x, A^* y \rangle = \langle x, A^t y\rangle = \langle x, Ay \rangle. \]
+
+Properties of self-adjoint real matrices over some field $F$:
+	\begin{itemize}
+		\item The matrix is symmetric
+		\item Adding and subtracting symmetric matrices preserves the the symmetry. That is $A$ and $B$ symmetric,
+			 then $A\pm B$ is symmetric.
+		\item Let $A$ and $B$ be symmetric matrices. Then $A$ and $B$ commute, i.e., $AB = BA$ if and only if $AB$ is symmetric:
+				If $A$ and $B$ commute, then we compute
+					\[(AB)^t = (BA)^t = A^t B^t = AB\]
+				which shows that $AB$ is symmetric. Conversely, since $AB$ is symmetric and we compute
+					\[ AB = (AB)^t = B^t A^t = BA\]
+				which shows that $A$ and $B$ commute.
+	\end{itemize}		 
+		
+\textbf{Assuming we are in a real finite dimensional inner product space:}
+	\begin{itemize}
+		\item If $A$ is the matrix representation of a linear operator on a finite dimensional real inner product space where
+		 $A$ is symmetric. Then, $A = A^t$, meaning that $A$ is equal to its adjoint (which is the conjugate transpose), i.e., 
+		 $A$ is self-adjoint. A useful theorem is that $A$ is self-adjoint if and only if there exists an orthonormal basis of eigenvectors.
+		 In particular, the orthonormal basis diagonalizes $A$. Called the \underline{\textbf{Orthonormal Diagonalizability Theorem}}.
+		 \item Every eigenvalue is real and the characteristic polynomial splits.
+	\end{itemize}
+	
+\subsubsection{Notes: Real Positive Definite Matrices}
+	
+\textbf{Real Positive Definite Matrix:} A real matrix is called positive definite if (1) the matrix is symmetric and (2) $x^TAx > 0$ for all \underline{\textbf{nonzero}} column vectors $x\in\R^n$. 
+
+List of equivalences that show that a real matrix is positive definite:
+
+	\begin{itemize}
+		\item The matrix is symmetric and all its eigenvalues are positive.
+			\footnote{If all of the eigenvalues exist and are (real) positive, there exists a full set of eigenvectors that form a basis for $\R^n$. Also something to keep in mind is that given any basis we can perform the Graham-Schmidt process to turn any basis into an orthogonal basis if we have an inner product space. But, remember we need to be able to use the notion of inner products to do this. Continuing... we can write any vector as a linear combination of the eigenvectors and if $x$ is an eigenvector of $A$, $Ax = \lambda x$ and $x^T Ax = x^T \lambda x = \lambda x^T x$. Because $\lambda > 0$, $x^Tx >0$ and we conclude that $x^T Ax > 0$ for every eigenvector. Then, we can extend this result to any linear combination being positive and so, for any nonzero vector in $\R^n$, $x^TAx > 0$. Sweet.}
+		\item If $A$ is congruent to a diagonal matrix, i.e., there exists an invertible matrix $P$ such that we can write $P^T A P = D$ where 
+			$D$ is a diagonal matrix.\footnote{In particular, because $A$ is self-adjoint and is the matrix representation of some linear operator $T$ on a finite dimensional inner product space there exists an orthonormal basis of eigenvectors that diagonalize $A$. That is, $P$ is the matrix whose columns equal the orthonormal basis of eigenvectors. On the diagonal, we obtain $x^T A x = \lambda x^Tx = \lambda$ since $x$ is orthonormal, $x^Tx = 1$.}
+		\item You can use Sylvester's criterion to show that the matrix is positive definite. Sylvester's criterion states that if all of the 
+			leading principal minors are positive then the matrix is positive definite.\footnote{The leading principal minors is a fancy word for taking the determinant of the matrix starting in the upper right corner and including one row at a time. That is, the first entry must be positive, then the determinant of the $2\times 2$ matrix formed in the upper right corner must be positive... continue till you conclude that all leading principal minors are positive. Also, note that positive implies that the determinant is not equal to zero.}
+		\item If there exists an invertible matrix $B$ such that $A = B^TB$, then $A$ is positive definite. 
+	\end{itemize}
+	
+Inner products and real symmetric matrices: How to use them
+
+Well, first consider the standard inner product on $\R^n$ which is given by the dot product. So, for all column vectors $x,y\in\R^n$ we define
+	\[\langle x, y\rangle = x^T\cdot y = x^Ty.\]
+How can we use this? Well, given a symmetric matrix $A$ define the inner product 
+	\[\langle x, y\rangle_A = \langle Ax, y\rangle \]
+which is an inner product. To see this, 
+	\begin{itemize}
+		\item Let $x_1, x_2, y\in \R^n$. We compute, 
+			\begin{align*}	\langle x_1 + x_2, y \rangle_A 
+							& = \langle A(x_1 + x_2), y \rangle\\
+							& = \langle Ax_1 + Ax_2, y \rangle\\
+							& = \langle Ax_1, y\rangle + \langle Ax_2, y \rangle\\
+							& = \langle x_1, y\rangle_A + \langle x_2, y \rangle_A\\
+			\end{align*}
+	\end{itemize}
+Or, you could simply state that $\langle \cdot, \cdot \rangle_A$ is an inner product because $A$ is a linear operator that respects the linearity of inner products in the first component as well as scalar multiples... or something like this.
+\break
+	
+\subsubsection{Problems}
+
+\begin{problem}{\#1, (from notes above)} Let $V$ be a finite dimensional real inner product space. Then $A$ is positive definite if and only if there exists an invertible matrix $B$ such that $A = B^T B$.
+\end{problem}
+
+$\implies$ Assume $A$ is positive definite. 
+
+Let $\lambda$ be an eigenvalue of $A$. Because $\langle Ax, x\rangle > 0$ for all nonzero vectors $x$ and
+\[ \lambda\langle x, x \rangle = \langle \lambda x, x\rangle = \langle Ax, x\rangle > 0,\]
+we conclude that $\lambda >0$, meaning that all the eigenvalues of $A$ are positive and real. Given that $A$ is symmetric, $A$ is self-adjoint. So, by the real spectral theorem there exists a full basis of orthonormal eigenvectors given by $x_1, \dots, x_n$ for $A$ corresponding to eigenvalues $\lambda_i$ for $i\in \{1, \dots, n\}$.
+
+Let $P$ be the matrix whose columns are the orthonormal eigenvectors of $A$ as defined above. Then, $P$ is invertible and we compute $P^T A P$ which results in the matrix whose entries equal $\langle Ax_i, x_j\rangle$ for $i,j\in\{1,\dots, n\}$. If $i = j$, then 
+\[ \langle Ax_i, x_j \rangle = \langle \lambda_i x_i, x_j \rangle = \lambda_i \]
+and otherwise for distinct $i$ and $j$, because the basis of eigenvectors is orthonormal, the columns of $P$ are orthogonal and so, $\langle Ax_i, x_j \rangle = 0$ when $i\neq j$. Therefore, $A$ is congruent to a diagonal matrix whose entries are equal to $\lambda_i$. Let $D$ denote the constructed diagonal matrix. Because $\lambda_i>0$ the square root of each eigenvalue exists and is positive, we may write $D = \sqrt{D}\sqrt{D}$, and note that $\sqrt{D}$ is also a diagonal matrix, meaning that it is equal to its transpose. 
+
+Define $B = \sqrt{D}P^{-1}$. Then $B$ is invertible because the entries in the diagonal matrix are nonzero and by multiplying a diagonal matrix on the left scales the rows of $P^{-1}$ by $\lambda_i$. Since, $P$ is invertible, $P^{-1}$ is invertible with inverse $P$. Also, observe that, $P^T A P = D$ implies that $A = (P^{-1})^T D P^{-1}$ and we compute, 
+	\[ B^T B = (\sqrt{D}P^{-1})^T \sqrt{D}P^{-1} = (P^{-1})^T \sqrt{D}\sqrt{D}P^{-1} = (P^{-1})^T D P^{-1} = A.\]
+Therefore, if $A$ is positive definite, there exists an invertible matrix $B$ such that $A = B^TB$ where $B^T$ is the matrix transpose of $B$.
+
+$\impliedby$ Observe that 
+	\[A ^T = (B^TB)^T = B^T (B^T)^T = B^T B = A\]
+	implies that $A$ is a real symmetric matrix. Also, we compute
+	\[ \langle Ax, x \rangle = \langle B^T Bx, x \rangle = \langle Bx, Bx \rangle \geq 0\]
+	and see that the strict inequality holds if and only if $Bx\neq 0$. Since we can assume that $B$ is a nonzero matrix (otherwise we are 
+	just dealing with the zero matrix) and so, $x$ must be a nonzero vector. Therefore, $A$ is symmetric and $\langle Ax, x \rangle > 0 $ 
+	for all nonzero vectors $x\in V$.
+	
+\break 
+
 \section{Rank Nullity Theorem}
 
 \subsection{Problems}
@@ -554,5 +648,90 @@ And with that. Goodnight.\\
 
 \hrule \vspace{2pts}
 \hrule
+
+\break 
+
+\section{Jordan Canonical Form}
+
+\subsection{Problems}
+
+\subsubsection{Hoffman \& Kunze, Sec. 7.3}
+
+\begin{problem}{\#1} Let $N_1$ and $N_2$ be $3 \times 3$ nilpotent matrices over the field $F$. Prove that $N_1$ and $N_2$ are similar if and only if they have the same minimal polynomial.
+\end{problem}
+
+\textbf{Solution:} $\implies$ 
+
+Let $k_1\in\N$ be the smallest positive integer for which $N_1$ is nilpotent and let $k_2$ be the smallest positive integer for which $N_2$ is nilpotent. Since $N_1$ and $N_2$ are similar, there exists an invertible matrix $Q$ such that 
+	\[ N_1 = Q N_2 Q^{-1}.\]
+Then we compute, 
+	\[ N_1^{k_1} = \big( Q N_2 Q^{-1} \big) = Q N_2^{k_1} Q^{-1} \]
+and see that 
+	\[ N_2 ^{k_1} = Q^{-1} N_1^{k_1} Q = 0 = N_2^{k_2}.\]
+If $k_1<k_2$ then $k_2$ is not the smallest positive integer such that $N_2$ is nilpotent. If we replace 1 with 2 in our computation above, we obtain that 
+\[N_1 ^{k_2} = Q'^{-1} N_2^{k_2} Q' = 0 = N_1^{k_1}\]
+and if $k_2 < k_1$, then $k_1$ is not the smallest positive integer for which $N_1$ is nilpotent. Therefore, $k_1 = k_2 = k$. Since each matrix is nilpotent, the eigenvalues are all equal to zero and so, the minimal polynomial of $N_1$ is $m_1(x) = x^k$ and the minimal polynomial of $N_2$ is $m_2(x) = x^k$. That is, if $N_1$ and $N_2$ are similar, then the minimal polynomials are equal.
+
+\textbf{Solution:} $\impliedby$
+
+Suppose the minimal polynomials of $N_1$ and $N_2$ are the same. Since each matrix is nilpotent, the eigenvalues are all equal to zero and because $F$ is a field which must contain the zero element, we conclude that each nilpotent matrix contains all its eigenvalues and the characteristic polynomial splits over $F$.  Then $N_1$ and $N_2$ are similar to a $3\times 3$ matrix in Jordan form. There are three cases to consider:
+	\begin{enumerate}
+		\item[(1)] Suppose $m(x) = x$ is the minimal polynomial of $N_1$ and $N_2$. By the Cayley-Hamilton theorem, 
+			$m(N_1) = m(N_2) = 0$ which implies that $N_1$ and $N_2$ are the zero matrix. Thus, $N_1$ and $N_2$ are similar.
+		\item[(2)] Suppose $m(x) = x^2$ is the minimal polynomial of $N_1$ and $N_2$. Then, $N_1$ is similar to a $3\times 3$ matrix
+			in the following Jordan form:
+				\[ \begin{bmatrix} 
+					\begin{array}{ccc}
+ 						0 & 1 & 0 \\
+ 						0 & 0 & 0 \\
+ 						0 & 0 & 0 \\
+					\end{array}
+				\end{bmatrix}\]
+			Since the matrices share the same minimal polynomial and are $3\times 3$ matrices, there is no other matrix in Jordan form
+			corresponding to the minimal polynomial $m(x) = x^2$ since the degree of the minimal polynomial is given by the size of the
+			largest elementary Jordan block. Thus, $N_2$ is similar to the matrix above and we conclude that $N_1$ is similar to $N_2$.
+		\item[(3)] Suppose $m(x) = x^3$ is the minimal polynomial of $N_1$ and $N_2$. Since the degree of the minimal polynomial 
+			is the size of the largest elementary Jordan block, $N_1$ is similar to a $3\times 3$ elementary Jordan block, and
+			 $N_2$ is similar to a $3\times 3$ elementary Jordan block. So, 
+				\[ \begin{bmatrix} 
+					\begin{array}{ccc}
+ 						0 & 1 & 0 \\
+ 						0 & 0 & 1 \\
+ 						0 & 0 & 0 \\
+					\end{array}
+				\end{bmatrix}\]			 
+			is the only matrix in Jordan form with minimal polynomial equaling $x^3$, and we conclude that $N_1$ and $N_2$ are similar.
+	\end{enumerate}
+
+	Also note that if $N_1$ and $N_2$ are $4\times 4$ nilpotent matrices over the field $F$ then the claim does not hold. That is, let $A_1$ be the matrix with one $2\times 2$ elementary Jordan block and two $1\times 1$ elementary Jordan blocks and let $A_2$ be the nilpotent matrix with two $2\times 2$ elementary Jordan blocks, i.e., 	
+	\[ A_1 = \begin{bmatrix}
+		\begin{array}{cccc}
+ 			0 & 1 & 0 & 0 \\
+ 			0 & 0 & 0 & 0 \\
+ 			0 & 0 & 0 & 0 \\
+ 			0 & 0 & 0 & 0 \\
+		\end{array}
+	\end{bmatrix}
+	\text{ and }
+	A_2 =\begin{bmatrix}
+		\begin{array}{cccc}
+ 			0 & 1 & 0 & 0 \\
+ 			0 & 0 & 0 & 0 \\
+ 			0 & 0 & 0 & 1 \\
+ 			0 & 0 & 0 & 0 \\
+		\end{array}
+	\end{bmatrix}.\]
+We observe that the minimal polynomial of each nilpotent matrix equals $x^2$. In particular, similar matrices have the same Jordan form (up to permutation of blocks) which implies that $A_1$ is not similar to $A_2$ because the Jordan forms are different.\\
+
+\break
+
+\begin{problem}{\#2} Let $A$ and $B$ be $n\times n$ matrices over the field $F$ which have the same characteristic polynomial
+	\[f(x) = (x - \lambda_1)^{r_1} \cdots (x - \lambda_k)^{r_k}\]
+and the same minimal polynomial. If no $r_i$ for $i\in \{1, \dots, k\}$ is greater than 3, then $A$ and $B$ are similar.
+\end{problem}
+
+			
+				
+
 
 \end{document}
