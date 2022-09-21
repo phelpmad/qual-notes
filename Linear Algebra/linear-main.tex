@@ -545,8 +545,15 @@ which is an inner product. To see this,
 							& = \langle Ax_1, y\rangle + \langle Ax_2, y \rangle\\
 							& = \langle x_1, y\rangle_A + \langle x_2, y \rangle_A\\
 			\end{align*}
+		\item For any scalar $\alpha\in\R$, $(\alpha Ax)^Ty = \alpha x^TAy$, meaning that
+			 $\alpha \langle x,y \rangle_A = \langle \alpha x, y\rangle_A$.
+		\item $\langle x, x \rangle_A = \langle Ax, x \rangle \leq 0$ for all $x\in\R^n$ and we obtain equality if and only if $x= 0$. 
+		\item To see that the inner product is symmetric: 
+			\[ \langle x, y\rangle_A = \langle Ax, y\rangle = x^TAy = (Ax)^T y = y^T Ax = \langle Ay, x\rangle = \langle y, x\rangle_A \]
+			where we used that $(BA)^T = A^T B^T$ (the socks and shoes of the transpose) to get the inner equality.
 	\end{itemize}
-Or, you could simply state that $\langle \cdot, \cdot \rangle_A$ is an inner product because $A$ is a linear operator that respects the linearity of inner products in the first component as well as scalar multiples... or something like this.
+Or, you could simply state that $\langle \cdot, \cdot \rangle_A$ is an inner product because $A$ is a linear operator that respects the linearity of inner products in the first component as well as scalar multiples, and using the property that $(BA)^T = A^T B^T$. Also, if $A$ is not symmetric then this does not hold because the proof hinges on the fact that $A^T = A$. This is a cool trick.
+
 \break
 	
 \subsubsection{Problems}
@@ -576,6 +583,79 @@ $\impliedby$ Observe that
 	just dealing with the zero matrix) and so, $x$ must be a nonzero vector. Therefore, $A$ is symmetric and $\langle Ax, x \rangle > 0 $ 
 	for all nonzero vectors $x\in V$.
 	
+\break 
+
+\subsubsection{Berkley Problems in Mathematics}
+
+\begin{problem}{7.8.9} An $n\times n$ real matrix $T$ is positive definite if $T$ is symmetric and $\langle Tx, x\rangle >0$ for all nonzero vectors $x\in \R^n$, where $\langle u, v\rangle$ is the standard inner product. Suppose that $A$ and $B$ are two positive definite real matrices. 
+	\begin{enumerate}
+		\item[(a)] Show that there is a basis $\{v_1, \dots, v_n\}$ of $\R^n$ and real numbers $\lambda_1, \dots, \lambda_n$ such that for\\ 
+				$1 \leq i, j \leq n$:
+					\[ \langle Av_i, v_j \rangle = 
+							\begin{cases} 
+								1 & i = j,\\
+								0 & i \neq j
+							\end{cases}\]
+					and 
+					\[ \langle Bv_i, v_j \rangle = 
+							\begin{cases} 
+								\lambda_i & i = j,\\
+								0 & i \neq j
+							\end{cases}\]
+						 
+		\item[(b)] Deduce from part (a) that there is an invertible real matrix $U$ such that $U^TAU = I$ and $U^TB^U$ is diagonal.	
+	\end{enumerate}
+\end{problem}
+
+
+\textbf{Solution:} (a) Define an inner product as
+	\[ \langle x, y \rangle_A = \langle Ax, y \rangle \]
+where $\langle u, v\rangle$ is the standard inner product on $\R^n$. Then, because $A$ is symmetric and a linear operator $A(\alpha x_1 + \beta x_2) = \alpha Ax_1 + \beta Ax_2$ we conclude that $\langle \cdot, \cdot \rangle_A$ is linear in the first component. To see that $\langle \cdot, \cdot \rangle_A$ has symmetry, we compute 
+	\[\]
+	
+	
+\break 
+
+\subsubsection{Fall 2020 \#3}
+
+\begin{problem}{\#3, Fall 2020} A real symmetric $n\times n$ matrix is called positive semi-definite if $x^tAx\geq 0$ for all $x\in\R^n$. Prove that $A$ is positive semi-definite if and only if $\tr{AB}\geq 0$ for every real symmetric positive definite $n\times n$ matrix $B$.
+\end{problem}
+
+\textbf{Solution:}
+
+$\implies$ Since $A$ is a real symmetric $n\times n$ matrix, $A$ is self-adjoint, and by the real spectral theorem there exists an orthonormal basis $v_1, \dots, v_n$ of eigenvectors corresponding to eigenvalues $\lambda_1, \dots, \lambda_n$ that diagonalizes $A$. In particular, let $U$ denote the orthogonal matrix whose columns, $U_j = v_j$ for $j\in\{1,\dots, n\}$. Then, $A = U^T D U$ where $U^T = U^{-1}$ and $D$ is the matrix with diag$(\lambda_1, \dots, \lambda_n)$. Let $B$ be any real symmetric positive semi-definite matrix, and define $E = UBU^T$. Then, $E$ is symmetric positive semi-definite because $E^T = (UBU^T)^T = UBU^T = E$ and for all $x\in \R^n$,
+	\[\langle Ex, x\rangle = \langle U B U^Tx, x\rangle = \langle BU^Tx U^Tx \rangle = \langle By, y\rangle \geq 0.\]
+Observe that,
+	\[ AB = (U^T D U)(U^TEU) = U^{-1}DUU^{-1}EU = U^{-1}DEU, \]
+meaning that $AB$ is similar to $DE$ and because similar matrices have the same trace, it follows that
+	\[ \tr{AB} = \tr{DE} = \sum_{i = 1}^n \sum_{j=1}^n D_{ij} E_{ji} = \sum_{i=1}^n \lambda_i E_{ii}\]
+(because $D$ is a diagonal matrix). Since $A$ is symmetric positive semi-definite, for each $i\in\{1, \dots, n\}$, 
+	\[\lambda_i = \langle \lambda_i v_i, v_i\rangle = \langle Av_i, v_i\rangle \geq 0\]
+and by letting $e_1, \dots, e_n$ denote the standard orthonormal basis of $\R^n$ because $E$ is symmetric positive semi-definite, 
+	\[ E_{ii} = \langle Ee_i, e_i \rangle \geq 0\]
+for all $i\in\{1,\dots, n\}$. Therefore, 
+	\[ \tr{AB} = \sum_{i=1}^n \lambda_i E_{ii} \geq 0\]
+for every symmetric positive semi-definite matrix $B$. 
+
+$\impliedby$ (by contraposition) Suppose $A$ is a real symmetric matrix that is not positive semi-definite. Since $A$ is symmetric, $A$ is self-adjoint and we can let $U$ be the same orthonormal matrix as defined above where $U_j = v_j$ with $v_j$ orthonormal eigenvectors of $A$. In particular, there exists some $i\in \{1, \dots, n\}$ such that $\lambda_i < 0$ because every symmetric positive semi-definite matrix has non-negative eigenvalues. Let $D = diag(\lambda_1, \dots, \lambda_n)$ as defined in the forward direction of this proof and write $A = U^TDU$. 
+
+Define $E$ to be the matrix with $E_{ii} = 1$ and otherwise all entries equal 0. Then, $E$ is symmetric and positive definite because for any $x\in\R^n$, 
+	\[ \langle Ex, x \rangle = x^T Ex = 
+		\begin{bmatrix} 
+			x_1 & \cdots & x_n
+		\end{bmatrix}
+		\begin{bmatrix}
+			0\\
+			\vdots\\
+			x_i\\
+			\vdots\\
+			0\\
+		\end{bmatrix}
+		= x_i^2 \geq 0.\]
+Let $B = U^T E U$. Then, $B$ is symmetric and positive definite (shown in the forward direction). We also have that $AB$ is similar to $DE$ and,
+	\[\tr{AB} = \tr{DE} = \sum_{j=1}^n \lambda_j E_{jj} = \lambda_i E_{ii} = \lambda_i < 0.\]
+Therefore, if $A$ is not positive semi-definite, then there exists a symmetric positive semi-definite matrix $B$ such that $\tr{AB} < 0$.
+
 \break 
 
 \section{Rank Nullity Theorem}
@@ -646,7 +726,7 @@ $\impliedby$ Observe that
 
 And with that. Goodnight.\\
 
-\hrule \vspace{2pts}
+\hrule \vspace{2pt}
 \hrule
 
 \break 
