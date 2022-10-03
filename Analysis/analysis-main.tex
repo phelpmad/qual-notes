@@ -39,6 +39,56 @@
 
 \subsection{Problems}
 
+\subsubsection{Fall 2022 \#2} 
+
+\hrule
+
+Consider a Banach space $V$, a contraction map $T: V\to V$, and the equation
+	\[ v = T(v) + y \]
+The operator $T$ is not necessarily linear.
+	\begin{enumerate}
+		\item[(a)] Show that for any $y\in V$, the solution exists and is unique.
+		\item[(b)] Based on (a), call $u(y)$ this solution. Show that $u(y)$ is a continuous function
+			 of $y$.
+		\item[(c)] Show that if $T: K\to K\subset V$, with $T(0) = 0$, and 
+			$K = \{ v\in V : || v ||  \leq r\}$,
+			with a fixed $r>0$, then the unique solution $u(y)$ lies in $K$, assuming  $ || y || $ is
+			sufficiently small.
+	\end{enumerate}
+	
+\hrule
+
+Solution (a):\\
+
+Fix some $y\in V$. Define $S: V\to V$ by 
+	\[S(v) = T(v) + y \]
+Since $T$ is a contraction map, there exists some constant $0 \leq \alpha < 1$ for which 
+	\[|| Tv - Tu || \leq \alpha || u - v || \]
+for all $u,v\in V$. Observe that $S$ is a contraction map on $V$ with contraction constant $\alpha$ because,
+	\[|| Sv - Su || = || Tv + y - (Tu + y) || = || Tv - Tu || \leq \alpha || u - v ||.\]
+By the Banach fixed point theorem, given that $V$ is a Banach space and thus, is a complete normed vector space with $S$ a contraction map on $V$, we may conclude that there exists a unique fixed point such that $Sv = v$. Because we fixed $y\in V$, the solution exists and is unique for all such $y\in V$.
+
+
+Solution (b):\\
+
+For $y\in V$ let $u(y) = T(v) + y$ be the solution. Let $\varepsilon > 0$ be given, and set $\delta = \varepsilon > 0$. Let $y_1, y_2\in V$ be chosen such that $|| y_1 - y_2 || < \delta$. Then, we compute
+	\[ || u(y_1) - u(y_2) || = || Tv + y_1 - Tv - y_2 || = || y_1 - y_2 || <  \delta = \varepsilon.\]
+Therefore, $u(y)$ is a continuous function of $y$.
+
+Solution (c): \\
+
+Let $\varepsilon > 0$ be given.
+
+Observe that because $T$ is a contraction on $V$ and $K\subset V$, $T$ is a contraction on $K$ with the same contraction constant $\alpha < 1 $. In particular this means that for any $v\in K$ 
+	\[|| Tv || = || Tv - 0 || = || Tv -T0 || \leq \alpha || v - 0 || = \alpha || v || < \alpha \cdot r < r.\]
+Hence, let $y\in V$ be such that $ || y || < \varepsilon $ and we compute,
+	\[ || u(y) || = || Tv + y || \leq || Tv || + || y || < \varepsilon + r\]
+and because the above holds for all $\varepsilon>0$, we may take $\varepsilon \to 0$ and conclude that $ || u(y) || \leq r $ for all such $y\in V$ with sufficiently small $|| y ||$. That is, $u(y)$ lies in $K$.
+
+	
+
+\break
+
 \subsubsection{Fall 2020 \#1}
 
 \hrule 
